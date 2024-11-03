@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 300px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .link {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .link a:hover {
+            text-decoration: underline;
+        }
+        .loading {
+            display: none;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .success-container {
+            display: none;
+            text-align: center;
+        }
+        .options button {
+            width: 45%;
+            margin: 5px;
+            background-color: #ff9800;
+        }
+    </style>
+    <script>
+        function showLoading() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("loading").style.display = "block";
+            
+            // Giả lập quá trình đăng nhập
+            setTimeout(function() {
+                document.getElementById("loading").style.display = "none";
+                document.getElementById("success-container").style.display = "block";
+            }, 2000);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="login-form">
+            <h2>Đăng Nhập</h2>
+            <input type="text" placeholder="Tên tài khoản" required>
+            <input type="password" placeholder="Mật khẩu" required>
+            <button onclick="showLoading()">Đăng nhập</button>
+            <div class="link">
+                <a href="#">Tạo tài khoản</a> | 
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+        </div>
+
+        <div id="loading" class="loading">Đang tải...</div>
+
+        <div id="success-container" class="success-container">
+            <h2>Chào mừng bạn!</h2>
+            <p>Chọn phương thức nạp tiền:</p>
+            <div class="options">
+                <button>Nạp tiền</button>
+                <button>Thẻ cào</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
