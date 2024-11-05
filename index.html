@@ -17,12 +17,23 @@
             padding: 20px;
             color: white; /* Màu chữ */
         }
+        .profile-container {
+            display: inline-block; /* Để căn giữa hình ảnh và biểu tượng tích xanh */
+            position: relative; /* Để dễ dàng căn chỉnh tích xanh */
+        }
         img {
             border-radius: 50%; /* Làm tròn ảnh profile */
             width: 150px; /* Kích thước ảnh profile */
             height: 150px; /* Kích thước ảnh profile */
             object-fit: cover; /* Giữ nguyên tỷ lệ khung hình mà không bị kéo giãn */
             margin-top: 20px; /* Khoảng cách từ trên xuống dưới cho ảnh */
+        }
+        .verified-icon {
+            position: absolute; /* Để đặt tích xanh ở vị trí mong muốn */
+            bottom: 10px; /* Khoảng cách từ đáy ảnh */
+            right: 10px; /* Khoảng cách từ bên phải ảnh */
+            font-size: 24px; /* Kích thước tích xanh */
+            color: #00bfff; /* Màu của tích xanh */
         }
         a {
             text-decoration: none;
@@ -39,8 +50,11 @@
     <h1>Chào mừng đến với trang cá nhân của tôi</h1>
     <h2>Phạm Thế Hiển</h2>
     
-    <!-- Thêm hình ảnh cá nhân -->
-    <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
+    <!-- Thêm hình ảnh cá nhân và tích xanh -->
+    <div class="profile-container">
+        <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
+        <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
+    </div>
     
     <!-- Thêm video -->
     <h3>Video giới thiệu</h3>
@@ -50,7 +64,7 @@
     </video>
     
     <!-- Thêm liên kết đến Facebook và TikTok với biểu tượng -->
-    <h3>Kết nối với tôi</h3>
+    <h3>Nhạc Nền</h3>
     <div class="social-icons">
         <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
             <i class="fab fa-facebook-square"></i> <!-- Biểu tượng Facebook -->
