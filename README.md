@@ -1,7 +1,7 @@
 hienpham
 # Phạm Thế Hiển
 
-![Ảnh đại diện](images/image.jpg)
+![Ảnh đại diện](IMG_3465.jpg)
 
 ## Thông Tin Liên Hệ
 - **Facebook**: [Phạm Thế Hiển Facebook](https://facebook.com/your-facebook-profile)
