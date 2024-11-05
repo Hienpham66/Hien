@@ -22,6 +22,10 @@
             color: #007bff;
             margin: 10px;
         }
+        /* Ẩn video nền âm thanh */
+        #background-video {
+            display: none; /* Ẩn video nền */
+        }
     </style>
 </head>
 <body>
@@ -32,13 +36,19 @@
     <!-- Thêm hình ảnh -->
     <img src="link-to-your-image.jpg" alt="Ảnh của tôi">
     
-    <!-- Thêm video -->
+    <!-- Video chính sẽ tự động phát -->
     <h3>Video giới thiệu</h3>
     <video width="560" height="315" controls autoplay muted>
-        <source src="Video121.mp4" type="video/mp4">
+        <source src="link-to-your-video.mp4" type="video/mp4">
         Trình duyệt của bạn không hỗ trợ video.
     </video>
     
+    <!-- Video nền nhạc (ẩn đi) -->
+    <video id="background-video" autoplay loop muted>
+        <source src="Video121.mp4" type="video/mp4">
+        Trình duyệt của bạn không hỗ trợ video.
+    </video>
+
     <!-- Thêm liên kết đến Facebook và TikTok -->
     <h3>Kết nối với tôi</h3>
     <a href="https://facebook.com/your-facebook-profile" target="_blank">Facebook</a>
