@@ -4,9 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký và Đăng nhập</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('IMG_3472.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 20px;
+            color: white;
+        }
+        .profile-container {
+            display: inline-block;
+            position: relative;
+        }
+        img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            margin-top: 20px;
+        }
+        .verified-icon {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #00bfff;
+        }
+        .social-icons {
+            display: flex;
+            justify-content: space-between;
+            width: 120px;
+            margin: 15px auto 0;
+        }
+        .social-icons a {
+            font-size: 36px;
+            color: white;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .social-icons a:hover {
+            transform: scale(1.2);
+            color: #00bfff;
+        }
+        #loginForm, #registerForm, #profilePage {
+            display: none;
+        }
+        #loginForm, #registerForm {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Form đăng ký -->
+
     <div id="registerForm">
         <h2>Đăng ký tài khoản</h2>
         <input type="text" id="registerUsername" placeholder="Tên đăng nhập">
@@ -15,8 +68,7 @@
         <p id="registerError" style="color: red; display: none;">Tên đăng nhập đã tồn tại!</p>
     </div>
 
-    <!-- Form đăng nhập -->
-    <div id="loginForm" style="display: none;">
+    <div id="loginForm" style="display: block;">
         <h2>Đăng nhập</h2>
         <input type="text" id="loginUsername" placeholder="Tên đăng nhập">
         <input type="password" id="loginPassword" placeholder="Mật khẩu">
@@ -24,15 +76,31 @@
         <p id="loginError" style="color: red; display: none;">Tên đăng nhập hoặc mật khẩu không đúng!</p>
     </div>
 
-    <!-- Trang cá nhân chỉ hiển thị khi người dùng đăng nhập -->
-    <div id="profilePage" style="display: none;">
+    <div id="profilePage">
         <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-        <p>Xin chào, <span id="userWelcome"></span></p>
+        <h2>Phạm Thế Hiển</h2>
+        <div class="profile-container">
+            <img src="IMG_2728.PNG" alt="Ảnh của tôi">
+            <i class="fas fa-check-circle verified-icon"></i>
+        </div>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
+                <i class="fab fa-facebook-square"></i>
+            </a>
+            <a href="https://www.tiktok.com/@betehien" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        <h3>Video giới thiệu</h3>
+        <video width="320" height="180" controls>
+            <source src="Video121.mp4" type="video/mp4">
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
+        <br>
         <button onclick="logout()">Đăng xuất</button>
     </div>
 
     <script>
-        // Kiểm tra trạng thái đăng nhập khi trang được tải
         window.onload = function() {
             const isLoggedIn = localStorage.getItem("isLoggedIn");
             const username = localStorage.getItem("username");
@@ -41,7 +109,6 @@
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("registerForm").style.display = "none";
                 document.getElementById("profilePage").style.display = "block";
-                document.getElementById("userWelcome").innerText = username;  // Hiển thị tên người dùng
             } else {
                 document.getElementById("loginForm").style.display = "block";
                 document.getElementById("registerForm").style.display = "block";
@@ -49,57 +116,39 @@
             }
         };
 
-        // Hàm đăng ký
         function register() {
             const registerUsername = document.getElementById("registerUsername").value;
             const registerPassword = document.getElementById("registerPassword").value;
 
-            // Kiểm tra xem tên đăng nhập đã tồn tại chưa
             const existingUser = localStorage.getItem(registerUsername);
             if (existingUser) {
-                document.getElementById("registerError").style.display = "block";  // Hiển thị lỗi nếu tên đăng nhập đã tồn tại
+                document.getElementById("registerError").style.display = "block";
             } else {
-                // Lưu tên đăng nhập và mật khẩu vào localStorage
-                const user = {
-                    username: registerUsername,
-                    password: registerPassword
-                };
+                const user = { username: registerUsername, password: registerPassword };
                 localStorage.setItem(registerUsername, JSON.stringify(user));
-
-                // Chuyển sang màn hình đăng nhập
                 document.getElementById("registerForm").style.display = "none";
                 document.getElementById("loginForm").style.display = "block";
             }
         }
 
-        // Hàm đăng nhập
         function login() {
             const loginUsername = document.getElementById("loginUsername").value;
             const loginPassword = document.getElementById("loginPassword").value;
 
-            // Kiểm tra tên đăng nhập và mật khẩu
             const user = JSON.parse(localStorage.getItem(loginUsername));
             if (user && user.password === loginPassword) {
-                // Lưu thông tin đăng nhập vào localStorage
                 localStorage.setItem("isLoggedIn", "true");
                 localStorage.setItem("username", loginUsername);
-
-                // Chuyển sang trang cá nhân
                 document.getElementById("loginForm").style.display = "none";
                 document.getElementById("profilePage").style.display = "block";
-                document.getElementById("userWelcome").innerText = loginUsername;
             } else {
-                document.getElementById("loginError").style.display = "block";  // Hiển thị lỗi nếu đăng nhập thất bại
+                document.getElementById("loginError").style.display = "block";
             }
         }
 
-        // Hàm đăng xuất
         function logout() {
-            // Xóa thông tin đăng nhập khỏi localStorage
             localStorage.removeItem("isLoggedIn");
             localStorage.removeItem("username");
-
-            // Hiển thị lại form đăng nhập và đăng ký
             document.getElementById("loginForm").style.display = "block";
             document.getElementById("registerForm").style.display = "block";
             document.getElementById("profilePage").style.display = "none";
