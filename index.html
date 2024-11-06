@@ -16,6 +16,7 @@
             margin: 0;
             padding: 20px;
             color: white;
+            min-height: 100vh; /* Đảm bảo chiều cao tối thiểu của trang đủ để cuộn */
         }
         .profile-container {
             display: inline-block;
@@ -57,7 +58,7 @@
             margin-top: 50px;
         }
 
-        /* Phần ảnh nền phía dưới */
+        /* Phần ảnh nền thứ hai sẽ ở cuối trang */
         .footer-background {
             width: 100%;
             height: 300px;
@@ -66,8 +67,6 @@
             background-position: center;
             background-repeat: no-repeat;
             margin-top: 50px; /* Khoảng cách giữa nội dung và ảnh nền */
-            position: relative;
-            z-index: -1; /* Đảm bảo ảnh nền ở dưới cùng */
         }
 
         /* Đảm bảo rằng nội dung chính của trang sẽ không bị đè lên ảnh nền */
@@ -119,7 +118,7 @@
         <button onclick="logout()">Đăng xuất</button>
     </div>
 
-    <!-- Phần ảnh nền dưới cùng -->
+    <!-- Phần ảnh nền thứ hai -->
     <div class="footer-background"></div>
 
     <script>
