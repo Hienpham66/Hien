@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Phạm Thế Hiển</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Thư viện Font Awesome -->
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script> <!-- Thư viện EmailJS -->
+    <title>Đăng nhập và Gửi Email</title>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -55,157 +54,68 @@
             text-decoration: none;
             color: #007bff; /* Màu chữ cho liên kết */
         }
-        .login-form, .register-form {
-            display: none; /* Ẩn form đăng ký và đăng nhập mặc định */
-            margin-top: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        .form-group input {
-            padding: 10px;
-            width: 200px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            background-color: #007bff;
-            color: white;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
     </style>
 </head>
 <body>
 
-    <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-    <h2>Phạm Thế Hiển</h2>
+    <h1>Đăng nhập và Gửi Email</h1>
 
-    <!-- Thêm hình ảnh cá nhân và tích xanh -->
-    <div class="profile-container">
-        <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
-        <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
-    </div>
+    <!-- Form Đăng nhập -->
+    <form id="loginForm">
+        <input type="email" id="email" placeholder="Nhập email" required>
+        <button type="submit">Đăng nhập</button>
+    </form>
 
-    <!-- Thêm liên kết đến Facebook và TikTok ngay dưới ảnh profile -->
-    <div class="social-icons">
-        <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
-            <i class="fab fa-facebook-square"></i> <!-- Biểu tượng Facebook -->
-        </a>
-        <a href="https://www.tiktok.com/@betehien" target="_blank">
-            <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
-        </a>
-    </div>
-
-    <!-- Form đăng nhập -->
-    <div class="login-form">
-        <h3>Đăng nhập</h3>
-        <div class="form-group">
-            <input type="text" id="loginEmail" placeholder="Email">
+    <!-- Phần Profile sẽ hiển thị sau khi đăng nhập -->
+    <div id="profile" style="display: none;">
+        <h2>Phạm Thế Hiển</h2>
+        <div class="profile-container">
+            <img src="IMG_2728.PNG" alt="Ảnh của tôi">
+            <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
         </div>
-        <div class="form-group">
-            <input type="password" id="loginPassword" placeholder="Mật khẩu">
+        <div class="social-icons">
+            <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
+                <i class="fab fa-facebook-square"></i> <!-- Biểu tượng Facebook -->
+            </a>
+            <a href="https://www.tiktok.com/@betehien" target="_blank">
+                <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
+            </a>
         </div>
-        <button class="btn" onclick="loginUser()">Đăng nhập</button>
-        <p><a href="#" onclick="showRegisterForm()">Chưa có tài khoản? Đăng ký ngay</a></p>
+        <h3>Video giới thiệu</h3>
+        <video width="320" height="180" controls>
+            <source src="Video121.mp4" type="video/mp4"> <!-- Video -->
+            Trình duyệt của bạn không hỗ trợ video.
+        </video>
     </div>
-
-    <!-- Form đăng ký -->
-    <div class="register-form">
-        <h3>Đăng ký tài khoản</h3>
-        <div class="form-group">
-            <input type="text" id="registerEmail" placeholder="Email">
-        </div>
-        <div class="form-group">
-            <input type="password" id="registerPassword" placeholder="Mật khẩu">
-        </div>
-        <button class="btn" onclick="registerUser()">Đăng ký</button>
-        <p><a href="#" onclick="showLoginForm()">Đã có tài khoản? Đăng nhập</a></p>
-    </div>
-
-    <h3>Video giới thiệu</h3>
-    <video width="320" height="180" controls>
-        <source src="Video121.mp4" type="video/mp4"> <!-- Video -->
-        Trình duyệt của bạn không hỗ trợ video.
-    </video>
 
     <script>
-        // Cấu hình EmailJS
-        (function(){
-            emailjs.init("YOUR_USER_ID"); // Thay YOUR_USER_ID bằng User ID của bạn từ EmailJS
-        })();
+        // Khởi tạo EmailJS
+        emailjs.init("YOUR_USER_ID"); // Thay YOUR_USER_ID bằng User ID của bạn từ EmailJS
 
-        // Hiển thị form đăng nhập
-        function showLoginForm() {
-            document.querySelector('.login-form').style.display = 'block';
-            document.querySelector('.register-form').style.display = 'none';
-        }
-
-        // Hiển thị form đăng ký
-        function showRegisterForm() {
-            document.querySelector('.register-form').style.display = 'block';
-            document.querySelector('.login-form').style.display = 'none';
-        }
-
-        // Đăng ký người dùng
-        function registerUser() {
-            var email = document.getElementById('registerEmail').value;
-            var password = document.getElementById('registerPassword').value;
-
-            if(email && password) {
-                localStorage.setItem('userEmail', email);
-                localStorage.setItem('userPassword', password);
-                alert("Đăng ký thành công!");
-                showLoginForm();
-            } else {
-                alert("Vui lòng nhập đầy đủ thông tin!");
-            }
-        }
-
-        // Đăng nhập người dùng
-        function loginUser() {
-            var email = document.getElementById('loginEmail').value;
-            var password = document.getElementById('loginPassword').value;
-
-            var storedEmail = localStorage.getItem('userEmail');
-            var storedPassword = localStorage.getItem('userPassword');
-
-            if(email === storedEmail && password === storedPassword) {
-                alert("Đăng nhập thành công!");
-                sendVerificationEmail(email);
-            } else {
-                alert("Email hoặc mật khẩu sai!");
-            }
-        }
-
-        // Gửi email xác nhận khi đăng nhập thành công
-        function sendVerificationEmail(email) {
+        // Lắng nghe sự kiện submit của form đăng nhập
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            var email = document.getElementById("email").value;
             var templateParams = {
                 email: email,
-                code: Math.floor(1000 + Math.random() * 9000) // Tạo mã xác nhận ngẫu nhiên
+                code: Math.floor(1000 + Math.random() * 9000)  // Mã xác nhận ngẫu nhiên
             };
 
-            emailjs.send('Hienpham99', 'template_w7og51n', templateParams)
+            // Gửi email qua EmailJS
+            emailjs.send('Hienpham99', 'template_cocfd0c', templateParams)
                 .then(function(response) {
+                    console.log('Success:', response);
                     alert('Mã xác nhận đã được gửi qua email!');
+                    
+                    // Ẩn form đăng nhập và hiển thị phần profile sau khi đăng nhập thành công
+                    document.getElementById("loginForm").style.display = "none";
+                    document.getElementById("profile").style.display = "block"; // Hiển thị phần profile
                 }, function(error) {
-                    alert('Có lỗi xảy ra: ' + error.text);
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra: ' + error.text); // Hiển thị lỗi nếu có
                 });
-        }
-
-        // Kiểm tra trạng thái đăng nhập khi tải trang
-        window.onload = function() {
-            if(localStorage.getItem('userEmail') && localStorage.getItem('userPassword')) {
-                showLoginForm();
-            } else {
-                showRegisterForm();
-            }
-        };
+        });
     </script>
 
 </body>
