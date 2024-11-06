@@ -3,86 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Phạm Thế Hiển</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Thư viện Font Awesome -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('IMG_3472.jpg'); /* Hình nền */
-            background-size: cover; /* Làm cho hình ảnh phủ kín toàn bộ màn hình */
-            background-position: center; /* Căn giữa hình ảnh */
-            background-repeat: no-repeat; /* Không lặp lại hình ảnh */
-            margin: 0;
-            padding: 20px;
-            color: white; /* Màu chữ */
-        }
-        .profile-container {
-            display: inline-block; /* Để căn giữa hình ảnh và biểu tượng tích xanh */
-            position: relative; /* Để dễ dàng căn chỉnh tích xanh */
-        }
-        img {
-            border-radius: 50%; /* Làm tròn ảnh profile */
-            width: 150px; /* Kích thước ảnh profile */
-            height: 150px; /* Kích thước ảnh profile */
-            object-fit: cover; /* Giữ nguyên tỷ lệ khung hình mà không bị kéo giãn */
-            margin-top: 20px; /* Khoảng cách từ trên xuống dưới cho ảnh */
-        }
-        .verified-icon {
-            position: absolute; /* Để đặt tích xanh ở vị trí mong muốn */
-            bottom: 10px; /* Khoảng cách từ đáy ảnh */
-            right: 10px; /* Khoảng cách từ bên phải ảnh */
-            font-size: 24px; /* Kích thước tích xanh */
-            color: #00bfff; /* Màu của tích xanh */
-        }
-        .social-icons {
-            display: flex;
-            justify-content: space-between;
-            width: 120px;
-            margin: 15px auto 0; /* Căn giữa và tạo khoảng cách dưới ảnh */
-        }
-        .social-icons a {
-            font-size: 36px; /* Tăng kích thước biểu tượng */
-            color: white; /* Màu biểu tượng */
-            transition: transform 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột */
-        }
-        .social-icons a:hover {
-            transform: scale(1.2); /* Phóng to khi di chuột qua */
-            color: #00bfff; /* Đổi màu khi di chuột qua */
-        }
-        a {
-            text-decoration: none;
-            color: #007bff; /* Màu chữ cho liên kết */
-        }
-    </style>
+    <title>Đăng ký và Đăng nhập</title>
 </head>
 <body>
-
-    <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-    <h2>Phạm Thế Hiển</h2>
-    
-    <!-- Thêm hình ảnh cá nhân và tích xanh -->
-    <div class="profile-container">
-        <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
-        <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
+    <!-- Form đăng ký -->
+    <div id="registerForm">
+        <h2>Đăng ký tài khoản</h2>
+        <input type="text" id="registerUsername" placeholder="Tên đăng nhập">
+        <input type="password" id="registerPassword" placeholder="Mật khẩu">
+        <button onclick="register()">Đăng ký</button>
+        <p id="registerError" style="color: red; display: none;">Tên đăng nhập đã tồn tại!</p>
     </div>
 
-    <!-- Thêm liên kết đến Facebook và TikTok ngay dưới ảnh profile -->
-    <div class="social-icons">
-        <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
-            <i class="fab fa-facebook-square"></i> <!-- Biểu tượng Facebook -->
-        </a>
-        <a href="https://www.tiktok.com/@betehien" target="_blank">
-            <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
-        </a>
+    <!-- Form đăng nhập -->
+    <div id="loginForm" style="display: none;">
+        <h2>Đăng nhập</h2>
+        <input type="text" id="loginUsername" placeholder="Tên đăng nhập">
+        <input type="password" id="loginPassword" placeholder="Mật khẩu">
+        <button onclick="login()">Đăng nhập</button>
+        <p id="loginError" style="color: red; display: none;">Tên đăng nhập hoặc mật khẩu không đúng!</p>
     </div>
-    
-    <!-- Thêm video -->
-    <h3>Video giới thiệu</h3>
-    <video width="320" height="180" controls>
-        <source src="Video121.mp4" type="video/mp4"> <!-- Video -->
-        Trình duyệt của bạn không hỗ trợ video.
-    </video>
 
+    <!-- Trang cá nhân chỉ hiển thị khi người dùng đăng nhập -->
+    <div id="profilePage" style="display: none;">
+        <h1>Chào mừng đến với trang cá nhân của tôi</h1>
+        <p>Xin chào, <span id="userWelcome"></span></p>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
+
+    <script>
+        // Kiểm tra trạng thái đăng nhập khi trang được tải
+        window.onload = function() {
+            const isLoggedIn = localStorage.getItem("isLoggedIn");
+            const username = localStorage.getItem("username");
+
+            if (isLoggedIn === "true") {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("registerForm").style.display = "none";
+                document.getElementById("profilePage").style.display = "block";
+                document.getElementById("userWelcome").innerText = username;  // Hiển thị tên người dùng
+            } else {
+                document.getElementById("loginForm").style.display = "block";
+                document.getElementById("registerForm").style.display = "block";
+                document.getElementById("profilePage").style.display = "none";
+            }
+        };
+
+        // Hàm đăng ký
+        function register() {
+            const registerUsername = document.getElementById("registerUsername").value;
+            const registerPassword = document.getElementById("registerPassword").value;
+
+            // Kiểm tra xem tên đăng nhập đã tồn tại chưa
+            const existingUser = localStorage.getItem(registerUsername);
+            if (existingUser) {
+                document.getElementById("registerError").style.display = "block";  // Hiển thị lỗi nếu tên đăng nhập đã tồn tại
+            } else {
+                // Lưu tên đăng nhập và mật khẩu vào localStorage
+                const user = {
+                    username: registerUsername,
+                    password: registerPassword
+                };
+                localStorage.setItem(registerUsername, JSON.stringify(user));
+
+                // Chuyển sang màn hình đăng nhập
+                document.getElementById("registerForm").style.display = "none";
+                document.getElementById("loginForm").style.display = "block";
+            }
+        }
+
+        // Hàm đăng nhập
+        function login() {
+            const loginUsername = document.getElementById("loginUsername").value;
+            const loginPassword = document.getElementById("loginPassword").value;
+
+            // Kiểm tra tên đăng nhập và mật khẩu
+            const user = JSON.parse(localStorage.getItem(loginUsername));
+            if (user && user.password === loginPassword) {
+                // Lưu thông tin đăng nhập vào localStorage
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("username", loginUsername);
+
+                // Chuyển sang trang cá nhân
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("profilePage").style.display = "block";
+                document.getElementById("userWelcome").innerText = loginUsername;
+            } else {
+                document.getElementById("loginError").style.display = "block";  // Hiển thị lỗi nếu đăng nhập thất bại
+            }
+        }
+
+        // Hàm đăng xuất
+        function logout() {
+            // Xóa thông tin đăng nhập khỏi localStorage
+            localStorage.removeItem("isLoggedIn");
+            localStorage.removeItem("username");
+
+            // Hiển thị lại form đăng nhập và đăng ký
+            document.getElementById("loginForm").style.display = "block";
+            document.getElementById("registerForm").style.display = "block";
+            document.getElementById("profilePage").style.display = "none";
+        }
+    </script>
 </body>
 </html>
