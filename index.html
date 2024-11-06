@@ -131,22 +131,34 @@
 
     // Đăng ký tài khoản
     function register() {
-        const email = document.getElementById('registerEmail').value;
-        const password = document.getElementById('registerPassword').value;
-        localStorage.setItem('email', email);
-        localStorage.setItem('password', password);
-        alert('Đăng ký thành công!');
-        showLoginForm();
+        const email = document.getElementById('registerEmail').value.trim();
+        const password = document.getElementById('registerPassword').value.trim();
+
+        // Lưu email và mật khẩu vào localStorage
+        if (email && password) {
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            alert('Đăng ký thành công!');
+            showLoginForm();
+        } else {
+            alert('Vui lòng điền đầy đủ thông tin!');
+        }
     }
 
     // Đăng nhập
     function login() {
-        const email = document.getElementById('loginEmail').value;
-        const password = document.getElementById('loginPassword').value;
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value.trim();
 
         const storedEmail = localStorage.getItem('email');
         const storedPassword = localStorage.getItem('password');
 
+        if (!email || !password) {
+            alert('Vui lòng điền đầy đủ thông tin!');
+            return;
+        }
+
+        // Kiểm tra email và mật khẩu nhập vào
         if (email === storedEmail && password === storedPassword) {
             alert('Đăng nhập thành công!');
             showProfile();
@@ -157,8 +169,13 @@
 
     // Quên mật khẩu
     function sendRecoveryEmail() {
-        const email = document.getElementById('forgotPasswordEmail').value;
+        const email = document.getElementById('forgotPasswordEmail').value.trim();
         const storedEmail = localStorage.getItem('email');
+
+        if (!email) {
+            alert('Vui lòng nhập email!');
+            return;
+        }
 
         if (email === storedEmail) {
             // Gửi email qua EmailJS
@@ -182,7 +199,7 @@
     function logout() {
         localStorage.removeItem('email');
         localStorage.removeItem('password');
-        showLoginForm();
+                showLoginForm();
     }
 
     // Kiểm tra nếu người dùng đã đăng nhập
@@ -195,3 +212,4 @@
 
 </body>
 </html>
+       
