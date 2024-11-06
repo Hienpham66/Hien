@@ -140,6 +140,7 @@
                 localStorage.setItem("isLoggedIn", "true");
                 localStorage.setItem("username", loginUsername);
                 document.getElementById("loginForm").style.display = "none";
+                document.getElementById("registerForm").style.display = "none"; // Ẩn form đăng ký
                 document.getElementById("profilePage").style.display = "block";
             } else {
                 document.getElementById("loginError").style.display = "block";
@@ -150,7 +151,7 @@
             localStorage.removeItem("isLoggedIn");
             localStorage.removeItem("username");
             document.getElementById("loginForm").style.display = "block";
-            document.getElementById("registerForm").style.display = "block";
+            document.getElementById("registerForm").style.display = "block"; // Hiển thị lại form đăng ký
             document.getElementById("profilePage").style.display = "none";
         }
     </script>
