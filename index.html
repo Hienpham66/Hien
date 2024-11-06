@@ -65,9 +65,6 @@
     <h1>Chào mừng đến với trang cá nhân của tôi</h1>
     <h2>Phạm Thế Hiển</h2>
     
-    <!-- Nút ấn để thay đổi -->
-    <button onclick="toggleProfile()">Ấn để thay đổi ảnh</button>
-    
     <!-- Thêm hình ảnh cá nhân và tích xanh -->
     <div class="profile-container" id="profile">
         <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
@@ -75,7 +72,7 @@
     </div>
 
     <!-- Hình ảnh mới sẽ xuất hiện khi ảnh profile biến mất -->
-    <img id="new-image" src="new-image.jpg" alt="Hình ảnh mới"> <!-- Thay 'new-image.jpg' bằng đường dẫn ảnh mới -->
+    <img id="new-image" src="IMG_3477.jpeg" alt="Hình ảnh mới"> <!-- Thay 'IMG_3477.jpeg' thành hình ảnh thay thế -->
     
     <!-- Thêm video -->
     <h3>Video giới thiệu</h3>
@@ -96,7 +93,8 @@
     </div>
 
     <script>
-        function toggleProfile() {
+        // Tự động chuyển đổi ảnh khi tải trang
+        window.onload = function() {
             const profile = document.getElementById('profile');
             const newImage = document.getElementById('new-image');
             
@@ -106,7 +104,7 @@
                 newImage.style.display = 'block';
                 newImage.style.opacity = 1;
             }, 500); // Chờ 500ms để hiệu ứng ẩn hoàn tất
-        }
+        };
     </script>
 
 </body>
