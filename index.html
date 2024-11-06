@@ -32,12 +32,14 @@
 <body>
 
     <h2>Đăng nhập / Đăng ký</h2>
+    
     <div id="login-form">
         <h3>Đăng nhập</h3>
         <input type="email" id="login-email" placeholder="Email">
         <input type="password" id="login-password" placeholder="Mật khẩu">
         <button onclick="login()">Đăng nhập</button>
         <div id="login-error" class="error"></div>
+        <p><a href="#" onclick="showForgotPasswordForm()">Quên mật khẩu?</a></p>
     </div>
 
     <div id="register-form">
@@ -48,25 +50,34 @@
         <div id="register-error" class="error"></div>
     </div>
 
+    <div id="forgot-password-form" style="display: none;">
+        <h3>Quên mật khẩu</h3>
+        <input type="email" id="forgot-email" placeholder="Email">
+        <button onclick="sendResetLink()">Gửi liên kết đặt lại mật khẩu</button>
+        <div id="forgot-error" class="error"></div>
+    </div>
+
     <div id="profile" style="display:none;">
         <h3>Chào mừng, <span id="profile-email"></span></h3>
         <button onclick="logout()">Đăng xuất</button>
     </div>
 
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
+        // Khởi tạo EmailJS
+        emailjs.init("ejckZGIObn-OZkDMv");  // Thay API key của bạn
+
         // Đăng ký người dùng
         function register() {
             const email = document.getElementById("register-email").value.trim();
             const password = document.getElementById("register-password").value.trim();
             const registerError = document.getElementById("register-error");
 
-            // Kiểm tra thông tin đăng ký
             if (!email || !password) {
                 registerError.textContent = "Vui lòng điền đủ thông tin.";
                 return;
             }
 
-            // Lưu email và password vào localStorage
             localStorage.setItem('email', email);
             localStorage.setItem('password', password);
             alert("Đăng ký thành công!");
@@ -79,7 +90,6 @@
             const password = document.getElementById("login-password").value.trim();
             const loginError = document.getElementById("login-error");
 
-            // Kiểm tra thông tin đăng nhập
             const savedEmail = localStorage.getItem('email');
             const savedPassword = localStorage.getItem('password');
 
@@ -88,7 +98,6 @@
                 return;
             }
 
-            // Kiểm tra email và mật khẩu với localStorage
             if (email === savedEmail && password === savedPassword) {
                 showProfile(email);
             } else {
@@ -100,13 +109,15 @@
         function showLoginForm() {
             document.getElementById("login-form").style.display = "block";
             document.getElementById("register-form").style.display = "block";
+            document.getElementById("forgot-password-form").style.display = "none";
             document.getElementById("profile").style.display = "none";
         }
 
-        // Hiển thị profile khi đăng nhập thành công
+        // Hiển thị profile sau khi đăng nhập thành công
         function showProfile(email) {
             document.getElementById("login-form").style.display = "none";
             document.getElementById("register-form").style.display = "none";
+            document.getElementById("forgot-password-form").style.display = "none";
             document.getElementById("profile").style.display = "block";
             document.getElementById("profile-email").textContent = email;
         }
@@ -116,6 +127,40 @@
             localStorage.removeItem('email');
             localStorage.removeItem('password');
             showLoginForm();
+        }
+
+        // Hiển thị form quên mật khẩu
+        function showForgotPasswordForm() {
+            document.getElementById("forgot-password-form").style.display = "block";
+        }
+
+        // Gửi email với liên kết đặt lại mật khẩu
+        function sendResetLink() {
+            const email = document.getElementById("forgot-email").value.trim();
+            const forgotError = document.getElementById("forgot-error");
+
+            if (!email) {
+                forgotError.textContent = "Vui lòng nhập email của bạn.";
+                return;
+            }
+
+            // Kiểm tra nếu email có tồn tại trong localStorage
+            const savedEmail = localStorage.getItem('email');
+            if (email === savedEmail) {
+                const templateParams = {
+                    to_email: email,
+                    message: "Mã xác nhận của bạn là: 123456"  // Đây chỉ là mã giả, bạn có thể thay bằng mã ngẫu nhiên
+                };
+
+                emailjs.send('Hienpham99', 'template_cocfd0c', templateParams)
+                    .then(function(response) {
+                        alert('Liên kết đặt lại mật khẩu đã được gửi đến email của bạn!');
+                    }, function(error) {
+                        forgotError.textContent = "Có lỗi xảy ra khi gửi email!";
+                    });
+            } else {
+                forgotError.textContent = "Email không tồn tại!";
+            }
         }
 
         // Kiểm tra nếu người dùng đã đăng nhập
