@@ -20,12 +20,6 @@
         .profile-container {
             display: inline-block; /* Để căn giữa hình ảnh và biểu tượng tích xanh */
             position: relative; /* Để dễ dàng căn chỉnh tích xanh */
-            transition: opacity 0.5s ease; /* Hiệu ứng mờ dần */
-        }
-        .hidden {
-            opacity: 0; /* Làm mờ ảnh khi bị ẩn */
-            visibility: hidden; /* Ẩn ảnh */
-            transition: opacity 0.5s ease; /* Thêm hiệu ứng khi ẩn */
         }
         img {
             border-radius: 50%; /* Làm tròn ảnh profile */
@@ -49,15 +43,6 @@
         .social-icons {
             font-size: 24px; /* Kích thước biểu tượng xã hội */
         }
-        #new-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            display: none; /* Ban đầu ẩn hình ảnh mới */
-            margin-top: 20px;
-            transition: opacity 0.5s ease; /* Hiệu ứng hiện hình ảnh */
-        }
     </style>
 </head>
 <body>
@@ -66,13 +51,10 @@
     <h2>Phạm Thế Hiển</h2>
     
     <!-- Thêm hình ảnh cá nhân và tích xanh -->
-    <div class="profile-container" id="profile">
+    <div class="profile-container">
         <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
         <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
     </div>
-
-    <!-- Hình ảnh mới sẽ xuất hiện khi ảnh profile biến mất -->
-    <img id="new-image" src="IMG_3477.jpeg" alt="Hình ảnh mới"> <!-- Thay 'IMG_3477.jpeg' thành hình ảnh thay thế -->
     
     <!-- Thêm video -->
     <h3>Video giới thiệu</h3>
@@ -91,21 +73,6 @@
             <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
         </a>
     </div>
-
-    <script>
-        // Tự động chuyển đổi ảnh khi tải trang
-        window.onload = function() {
-            const profile = document.getElementById('profile');
-            const newImage = document.getElementById('new-image');
-            
-            // Ẩn profile và hiển thị hình ảnh mới
-            profile.classList.add('hidden');
-            setTimeout(() => {
-                newImage.style.display = 'block';
-                newImage.style.opacity = 1;
-            }, 500); // Chờ 500ms để hiệu ứng ẩn hoàn tất
-        };
-    </script>
 
 </body>
 </html>
