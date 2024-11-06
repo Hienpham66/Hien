@@ -3,213 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Đăng Nhập và Đăng Ký</title>
-    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Đăng ký / Đăng nhập</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('IMG_3472.jpg');
-            background-size: cover;
-            background-position: center;
-            margin: 0;
             padding: 20px;
-            color: white;
-        }
-        .form-container {
-            margin-top: 50px;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-            border-radius: 8px;
-            width: 300px;
-            margin: 0 auto;
         }
         input {
-            width: 100%;
             padding: 10px;
             margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ccc;
+            width: 100%;
+            box-sizing: border-box;
         }
-        .hidden {
-            display: none;
-        }
-        #profile {
-            margin-top: 20px;
-        }
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        .social-icons a {
-            margin: 0 10px;
-            font-size: 24px;
+        button {
+            padding: 10px;
+            background-color: #007bff;
             color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        .social-icons a:hover {
-            color: #00bfff;
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-<h1>Chào mừng đến với trang cá nhân của tôi</h1>
-
-<!-- Đăng nhập -->
-<div id="loginForm" class="form-container">
-    <h2>Đăng Nhập</h2>
-    <input type="email" id="loginEmail" placeholder="Email" required>
-    <input type="password" id="loginPassword" placeholder="Mật khẩu" required>
-    <button onclick="login()">Đăng Nhập</button>
-    <p>Bạn chưa có tài khoản? <a href="javascript:void(0)" onclick="showRegisterForm()">Đăng ký</a></p>
-    <p><a href="javascript:void(0)" onclick="showForgotPasswordForm()">Quên mật khẩu?</a></p>
-</div>
-
-<!-- Đăng ký -->
-<div id="registerForm" class="form-container hidden">
-    <h2>Đăng Ký</h2>
-    <input type="email" id="registerEmail" placeholder="Email" required>
-    <input type="password" id="registerPassword" placeholder="Mật khẩu" required>
-    <button onclick="register()">Đăng Ký</button>
-    <p>Đã có tài khoản? <a href="javascript:void(0)" onclick="showLoginForm()">Đăng nhập</a></p>
-</div>
-
-<!-- Quên mật khẩu -->
-<div id="forgotPasswordForm" class="form-container hidden">
-    <h2>Quên Mật Khẩu</h2>
-    <input type="email" id="forgotPasswordEmail" placeholder="Email" required>
-    <button onclick="sendRecoveryEmail()">Gửi Mã Khôi Phục</button>
-    <p><a href="javascript:void(0)" onclick="showLoginForm()">Trở lại đăng nhập</a></p>
-</div>
-
-<!-- Profile -->
-<div id="profile" class="hidden">
-    <h2>Chào mừng, <span id="profileName"></span></h2>
-    <div class="profile-container">
-        <img src="IMG_2728.PNG" alt="Ảnh của tôi" style="border-radius: 50%; width: 150px; height: 150px;">
+    <h2>Đăng nhập / Đăng ký</h2>
+    <div id="login-form">
+        <h3>Đăng nhập</h3>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Mật khẩu">
+        <button onclick="login()">Đăng nhập</button>
+        <div id="login-error" class="error"></div>
     </div>
-    <div class="social-icons">
-        <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank"><i class="fab fa-facebook-square"></i></a>
-        <a href="https://www.tiktok.com/@betehien" target="_blank"><i class="fab fa-tiktok"></i></a>
+
+    <div id="register-form">
+        <h3>Đăng ký</h3>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Mật khẩu">
+        <button onclick="register()">Đăng ký</button>
+        <div id="register-error" class="error"></div>
     </div>
-    <button onclick="logout()">Đăng Xuất</button>
-</div>
 
-<script>
-    // Khởi tạo EmailJS
-    emailjs.init('ejckZGIObn-OZkDMv'); // Public Key của bạn
+    <div id="profile" style="display:none;">
+        <h3>Chào mừng, <span id="profile-email"></span></h3>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
 
-    // Chuyển giữa các form
-    function showLoginForm() {
-        document.getElementById('loginForm').classList.remove('hidden');
-        document.getElementById('registerForm').classList.add('hidden');
-        document.getElementById('forgotPasswordForm').classList.add('hidden');
-        document.getElementById('profile').classList.add('hidden');
-    }
+    <script>
+        // Đăng ký người dùng
+        function register() {
+            const email = document.getElementById("register-email").value.trim();
+            const password = document.getElementById("register-password").value.trim();
+            const registerError = document.getElementById("register-error");
 
-    function showRegisterForm() {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('registerForm').classList.remove('hidden');
-        document.getElementById('forgotPasswordForm').classList.add('hidden');
-    }
+            // Kiểm tra thông tin đăng ký
+            if (!email || !password) {
+                registerError.textContent = "Vui lòng điền đủ thông tin.";
+                return;
+            }
 
-    function showForgotPasswordForm() {
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('registerForm').classList.add('hidden');
-        document.getElementById('forgotPasswordForm').classList.remove('hidden');
-    }
-
-    function showProfile() {
-        document.getElementById('profile').classList.remove('hidden');
-        document.getElementById('loginForm').classList.add('hidden');
-        document.getElementById('registerForm').classList.add('hidden');
-        document.getElementById('forgotPasswordForm').classList.add('hidden');
-        document.getElementById('profileName').textContent = localStorage.getItem('email');
-    }
-
-    // Đăng ký tài khoản
-    function register() {
-        const email = document.getElementById('registerEmail').value.trim();
-        const password = document.getElementById('registerPassword').value.trim();
-
-        // Lưu email và mật khẩu vào localStorage
-        if (email && password) {
+            // Lưu email và password vào localStorage
             localStorage.setItem('email', email);
             localStorage.setItem('password', password);
-            alert('Đăng ký thành công!');
+            alert("Đăng ký thành công!");
             showLoginForm();
+        }
+
+        // Đăng nhập người dùng
+        function login() {
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value.trim();
+            const loginError = document.getElementById("login-error");
+
+            // Kiểm tra thông tin đăng nhập
+            const savedEmail = localStorage.getItem('email');
+            const savedPassword = localStorage.getItem('password');
+
+            if (!email || !password) {
+                loginError.textContent = "Vui lòng điền đủ thông tin.";
+                return;
+            }
+
+            // Kiểm tra email và mật khẩu với localStorage
+            if (email === savedEmail && password === savedPassword) {
+                showProfile(email);
+            } else {
+                loginError.textContent = "Email hoặc mật khẩu không đúng!";
+            }
+        }
+
+        // Hiển thị form đăng nhập
+        function showLoginForm() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("register-form").style.display = "block";
+            document.getElementById("profile").style.display = "none";
+        }
+
+        // Hiển thị profile khi đăng nhập thành công
+        function showProfile(email) {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("profile").style.display = "block";
+            document.getElementById("profile-email").textContent = email;
+        }
+
+        // Đăng xuất
+        function logout() {
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            showLoginForm();
+        }
+
+        // Kiểm tra nếu người dùng đã đăng nhập
+        if (localStorage.getItem('email') && localStorage.getItem('password')) {
+            showProfile(localStorage.getItem('email'));
         } else {
-            alert('Vui lòng điền đầy đủ thông tin!');
+            showLoginForm();
         }
-    }
-
-    // Đăng nhập
-    function login() {
-        const email = document.getElementById('loginEmail').value.trim();
-        const password = document.getElementById('loginPassword').value.trim();
-
-        const storedEmail = localStorage.getItem('email');
-        const storedPassword = localStorage.getItem('password');
-
-        if (!email || !password) {
-            alert('Vui lòng điền đầy đủ thông tin!');
-            return;
-        }
-
-        // Kiểm tra email và mật khẩu nhập vào
-        if (email === storedEmail && password === storedPassword) {
-            alert('Đăng nhập thành công!');
-            showProfile();
-        } else {
-            alert('Email hoặc mật khẩu không đúng!');
-        }
-    }
-
-    // Quên mật khẩu
-    function sendRecoveryEmail() {
-        const email = document.getElementById('forgotPasswordEmail').value.trim();
-        const storedEmail = localStorage.getItem('email');
-
-        if (!email) {
-            alert('Vui lòng nhập email!');
-            return;
-        }
-
-        if (email === storedEmail) {
-            // Gửi email qua EmailJS
-            const templateParams = {
-                to_email: email,
-                message: 'Mã khôi phục của bạn là: 12345', // Thay bằng mã khôi phục thực tế
-            };
-
-            emailjs.send('Hienpham99', 'template_cocfd0c', templateParams)
-                .then(function(response) {
-                    alert('Mã khôi phục đã được gửi qua email!');
-                }, function(error) {
-                    alert('Có lỗi xảy ra. Vui lòng thử lại!');
-                });
-        } else {
-            alert('Email không đúng!');
-        }
-    }
-
-    // Đăng xuất
-    function logout() {
-        localStorage.removeItem('email');
-        localStorage.removeItem('password');
-                showLoginForm();
-    }
-
-    // Kiểm tra nếu người dùng đã đăng nhập
-    if (localStorage.getItem('email') && localStorage.getItem('password')) {
-        showProfile();
-    } else {
-        showLoginForm();
-    }
-</script>
+    </script>
 
 </body>
 </html>
-       
