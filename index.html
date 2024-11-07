@@ -3,138 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng ký / Đăng nhập</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        input {
-            padding: 10px;
-            margin: 10px 0;
-            width: 100%;
-            box-sizing: border-box;
-        }
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-        }
-        .error {
-            color: red;
-            font-size: 14px;
-        }
-    </style>
+    <title>Profile Phạm Thế Hiển</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <h2>Đăng nhập / Đăng ký</h2>
-    <div id="login-form">
-        <h3>Đăng nhập</h3>
+    <div id="auth-section">
+        <h2>Đăng nhập</h2>
         <input type="email" id="login-email" placeholder="Email">
         <input type="password" id="login-password" placeholder="Mật khẩu">
         <button onclick="login()">Đăng nhập</button>
-        <div id="login-error" class="error"></div>
-        <button onclick="forgotPassword()">Quên mật khẩu?</button>
-        <div id="forgot-error" class="error"></div>
-    </div>
-
-    <div id="register-form">
+        <p id="login-error" class="error"></p>
+        
         <h3>Đăng ký</h3>
         <input type="email" id="register-email" placeholder="Email">
         <input type="password" id="register-password" placeholder="Mật khẩu">
         <button onclick="register()">Đăng ký</button>
-        <div id="register-error" class="error"></div>
+        <p id="register-error" class="error"></p>
+
+        <h3>Quên mật khẩu?</h3>
+        <input type="email" id="forgot-email" placeholder="Nhập email để nhận mã code">
+        <button onclick="sendResetCode()">Gửi mã xác minh</button>
+        <p id="forgot-error" class="error"></p>
+
+        <h3>Nhập mã xác minh</h3>
+        <input type="text" id="reset-code" placeholder="Mã xác minh">
+        <input type="password" id="new-password" placeholder="Mật khẩu mới">
+        <button onclick="resetPassword()">Đặt lại mật khẩu</button>
+        <p id="reset-error" class="error"></p>
     </div>
 
-    <div id="profile" style="display:none;">
-        <h3>Chào mừng, <span id="profile-email"></span></h3>
-        <button onclick="logout()">Đăng xuất</button>
+    <div class="profile-container" style="display: none;">
+        <h1>Chào mừng đến với trang cá nhân của tôi</h1>
+        <h2>Phạm Thế Hiển</h2>
+        <img src="https://via.placeholder.com/150" alt="Ảnh của tôi">
     </div>
 
-    <script>
-        function register() {
-            const email = document.getElementById("register-email").value.trim();
-            const password = document.getElementById("register-password").value.trim();
-            const registerError = document.getElementById("register-error");
-
-            if (!email || !password) {
-                registerError.textContent = "Vui lòng điền đủ thông tin.";
-                return;
-            }
-
-            localStorage.setItem('email', email);
-            localStorage.setItem('password', password);
-            alert("Đăng ký thành công!");
-            showLoginForm();
-        }
-
-        function login() {
-            const email = document.getElementById("login-email").value.trim();
-            const password = document.getElementById("login-password").value.trim();
-            const loginError = document.getElementById("login-error");
-
-            const savedEmail = localStorage.getItem('email');
-            const savedPassword = localStorage.getItem('password');
-
-            if (!email || !password) {
-                loginError.textContent = "Vui lòng điền đủ thông tin.";
-                return;
-            }
-
-            if (email === savedEmail && password === savedPassword) {
-                showProfile(email);
-            } else {
-                loginError.textContent = "Email hoặc mật khẩu không đúng!";
-            }
-        }
-
-        function forgotPassword() {
-            const email = document.getElementById("login-email").value.trim();
-            const forgotError = document.getElementById("forgot-error");
-
-            if (!email) {
-                forgotError.textContent = "Vui lòng nhập email để đặt lại mật khẩu.";
-                return;
-            }
-
-            const savedEmail = localStorage.getItem('email');
-
-            if (email !== savedEmail) {
-                forgotError.textContent = "Email không tồn tại trong hệ thống!";
-            } else {
-                alert("Liên hệ bộ phận hỗ trợ để đặt lại mật khẩu.");
-            }
-        }
-
-        function showLoginForm() {
-            document.getElementById("login-form").style.display = "block";
-            document.getElementById("register-form").style.display = "block";
-            document.getElementById("profile").style.display = "none";
-        }
-
-        function showProfile(email) {
-            document.getElementById("login-form").style.display = "none";
-            document.getElementById("register-form").style.display = "none";
-            document.getElementById("profile").style.display = "block";
-            document.getElementById("profile-email").textContent = email;
-        }
-
-        function logout() {
-            localStorage.removeItem('email');
-            localStorage.removeItem('password');
-            showLoginForm();
-        }
-
-        if (localStorage.getItem('email') && localStorage.getItem('password')) {
-            showProfile(localStorage.getItem('email'));
-        } else {
-            showLoginForm();
-        }
-    </script>
-
+    <script src="scripts.js"></script>
 </body>
 </html>
