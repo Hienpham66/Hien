@@ -4,14 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gửi mã xác minh</title>
+    <script>
+        // Tạo mã xác minh ngẫu nhiên
+        function generateVerificationCode() {
+            return Math.floor(100000 + Math.random() * 900000); // Tạo mã ngẫu nhiên 6 chữ số
+        }
+
+        // Gửi form và mã qua Formspree
+        function sendVerificationCode(event) {
+            event.preventDefault(); // Ngừng hành động gửi form mặc định
+
+            // Lấy giá trị email từ ô nhập liệu
+            const email = document.getElementById('forgot-email').value;
+            const verificationCode = generateVerificationCode(); // Tạo mã xác minh
+
+            // Cập nhật thông tin template params
+            const templateParams = {
+                to_email: email,         // Địa chỉ email người dùng nhập
+                verification_code: verificationCode // Mã xác minh
+            };
+
+            // Gửi email qua Formspree
+            fetch("https://formspree.io/f/movqdkwp", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(templateParams)
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('message').innerText = 'Mã xác minh đã được gửi đến email của bạn.';
+                console.log('Email gửi thành công:', data);
+            })
+            .catch(error => {
+                document.getElementById('message').innerText = 'Có lỗi xảy ra khi gửi email.';
+                console.error('Lỗi khi gửi email:', error);
+            });
+        }
+    </script>
 </head>
 <body>
     <div id="auth-section">
         <h2>Quên mật khẩu?</h2>
         
         <!-- Form gửi email đến Formspree -->
-        <form action="https://formspree.io/f/movqdkwp" method="POST">
-            <input type="email" name="email" id="forgot-email" placeholder="Nhập email để nhận mã code" required>
+        <form onsubmit="sendVerificationCode(event)">
+            <input type="email" id="forgot-email" name="email" placeholder="Nhập email để nhận mã code" required>
             <button type="submit">Gửi mã xác minh</button>
         </form>
         
