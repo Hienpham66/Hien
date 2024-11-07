@@ -3,18 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gửi Mã Xác Minh</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <title>Gửi mã xác minh</title>
 </head>
 <body>
     <div id="auth-section">
-        <h2>Quên Mật Khẩu?</h2>
-        <input type="email" id="forgot-email" placeholder="Nhập email để nhận mã code">
-        <button type="button" id="send-code-btn">Gửi mã xác minh</button>
+        <h2>Quên mật khẩu?</h2>
+        
+        <!-- Form gửi email đến Formspree -->
+        <form action="https://formspree.io/f/movqdkwp" method="POST">
+            <input type="email" name="email" id="forgot-email" placeholder="Nhập email để nhận mã code" required>
+            <button type="submit">Gửi mã xác minh</button>
+        </form>
+        
+        <!-- Thông báo cho người dùng -->
         <p id="message"></p>
     </div>
-
-    <!-- Liên kết tệp script.js từ GitHub -->
-    <script src="https://raw.githubusercontent.com/myusername/my-web-project/main/script.js"></script>
 </body>
 </html>
