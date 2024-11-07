@@ -3,41 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Phạm Thế Hiển</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Trang gửi mã xác minh</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function(){
+            emailjs.init("rbQ0ILUyu2HIcCioh"); // Public Key từ EmailJS
+        })();
+    </script>
 </head>
 <body>
-    <div id="auth-section">
-        <h2>Đăng nhập</h2>
-        <input type="email" id="login-email" placeholder="Email">
-        <input type="password" id="login-password" placeholder="Mật khẩu">
-        <button onclick="login()">Đăng nhập</button>
-        <p id="login-error" class="error"></p>
-        
-        <h3>Đăng ký</h3>
-        <input type="email" id="register-email" placeholder="Email">
-        <input type="password" id="register-password" placeholder="Mật khẩu">
-        <button onclick="register()">Đăng ký</button>
-        <p id="register-error" class="error"></p>
+    <h2>Nhận mã xác minh</h2>
+    <input type="email" id="forgot-email" placeholder="Nhập email của bạn">
+    <button onclick="sendVerificationCode()">Gửi mã xác minh</button>
+    <p id="message"></p>
 
-        <h3>Quên mật khẩu?</h3>
-        <input type="email" id="forgot-email" placeholder="Nhập email để nhận mã code">
-        <button onclick="sendResetCode()">Gửi mã xác minh</button>
-        <p id="forgot-error" class="error"></p>
+    <script>
+        function sendVerificationCode() {
+            const email = document.getElementById('forgot-email').value;
+            const code = Math.floor(100000 + Math.random() * 900000); // Tạo mã ngẫu nhiên 6 chữ số
 
-        <h3>Nhập mã xác minh</h3>
-        <input type="text" id="reset-code" placeholder="Mã xác minh">
-        <input type="password" id="new-password" placeholder="Mật khẩu mới">
-        <button onclick="resetPassword()">Đặt lại mật khẩu</button>
-        <p id="reset-error" class="error"></p>
-    </div>
+            const templateParams = {
+                email: email,
+                code: code
+            };
 
-    <div class="profile-container" style="display: none;">
-        <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-        <h2>Phạm Thế Hiển</h2>
-        <img src="https://via.placeholder.com/150" alt="Ảnh của tôi">
-    </div>
-
-    <script src="scripts.js"></script>
+            emailjs.send("service_2qg399z", "template_u1lcbi6", templateParams)
+                .then((response) => {
+                    document.getElementById('message').innerText = 'Mã xác minh đã được gửi đến email của bạn.';
+                    console.log('Email gửi thành công!', response.status, response.text);
+                }, (error) => {
+                    document.getElementById('message').innerText = 'Có lỗi xảy ra khi gửi email.';
+                    console.error('Gửi email thất bại:', error);
+                });
+        }
+    </script>
 </body>
 </html>
