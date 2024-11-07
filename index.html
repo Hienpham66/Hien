@@ -3,86 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Phạm Thế Hiển</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Thư viện Font Awesome -->
+    <title>Đăng ký / Đăng nhập</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('IMG_3472.jpg'); /* Hình nền */
-            background-size: cover; /* Làm cho hình ảnh phủ kín toàn bộ màn hình */
-            background-position: center; /* Căn giữa hình ảnh */
-            background-repeat: no-repeat; /* Không lặp lại hình ảnh */
-            margin: 0;
             padding: 20px;
-            color: white; /* Màu chữ */
         }
-        .profile-container {
-            display: inline-block; /* Để căn giữa hình ảnh và biểu tượng tích xanh */
-            position: relative; /* Để dễ dàng căn chỉnh tích xanh */
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            width: 100%;
+            box-sizing: border-box;
         }
-        img {
-            border-radius: 50%; /* Làm tròn ảnh profile */
-            width: 150px; /* Kích thước ảnh profile */
-            height: 150px; /* Kích thước ảnh profile */
-            object-fit: cover; /* Giữ nguyên tỷ lệ khung hình mà không bị kéo giãn */
-            margin-top: 20px; /* Khoảng cách từ trên xuống dưới cho ảnh */
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            width: 100%;
         }
-        .verified-icon {
-            position: absolute; /* Để đặt tích xanh ở vị trí mong muốn */
-            bottom: 10px; /* Khoảng cách từ đáy ảnh */
-            right: 10px; /* Khoảng cách từ bên phải ảnh */
-            font-size: 24px; /* Kích thước tích xanh */
-            color: #00bfff; /* Màu của tích xanh */
-        }
-        .social-icons {
-            display: flex;
-            justify-content: space-between;
-            width: 120px;
-            margin: 15px auto 0; /* Căn giữa và tạo khoảng cách dưới ảnh */
-        }
-        .social-icons a {
-            font-size: 36px; /* Tăng kích thước biểu tượng */
-            color: white; /* Màu biểu tượng */
-            transition: transform 0.3s ease, color 0.3s ease; /* Hiệu ứng khi di chuột */
-        }
-        .social-icons a:hover {
-            transform: scale(1.2); /* Phóng to khi di chuột qua */
-            color: #00bfff; /* Đổi màu khi di chuột qua */
-        }
-        a {
-            text-decoration: none;
-            color: #007bff; /* Màu chữ cho liên kết */
+        .error {
+            color: red;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-    <h2>Phạm Thế Hiển</h2>
-    
-    <!-- Thêm hình ảnh cá nhân và tích xanh -->
-    <div class="profile-container">
-        <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
-        <i class="fas fa-check-circle verified-icon"></i> <!-- Tích xanh -->
+    <h2>Đăng nhập / Đăng ký</h2>
+    <div id="login-form">
+        <h3>Đăng nhập</h3>
+        <input type="email" id="login-email" placeholder="Email">
+        <input type="password" id="login-password" placeholder="Mật khẩu">
+        <button onclick="login()">Đăng nhập</button>
+        <div id="login-error" class="error"></div>
+        <button onclick="forgotPassword()">Quên mật khẩu?</button>
+        <div id="forgot-error" class="error"></div>
     </div>
 
-    <!-- Thêm liên kết đến Facebook và TikTok ngay dưới ảnh profile -->
-    <div class="social-icons">
-        <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
-            <i class="fab fa-facebook-square"></i> <!-- Biểu tượng Facebook -->
-        </a>
-        <a href="https://www.tiktok.com/@betehien" target="_blank">
-            <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
-        </a>
+    <div id="register-form">
+        <h3>Đăng ký</h3>
+        <input type="email" id="register-email" placeholder="Email">
+        <input type="password" id="register-password" placeholder="Mật khẩu">
+        <button onclick="register()">Đăng ký</button>
+        <div id="register-error" class="error"></div>
     </div>
-    
-    <!-- Thêm video -->
-    <h3>Video giới thiệu</h3>
-    <video width="320" height="180" controls>
-        <source src="Video121.mp4" type="video/mp4"> <!-- Video -->
-        Trình duyệt của bạn không hỗ trợ video.
-    </video>
+
+    <div id="profile" style="display:none;">
+        <h3>Chào mừng, <span id="profile-email"></span></h3>
+        <button onclick="logout()">Đăng xuất</button>
+    </div>
+
+    <script>
+        function register() {
+            const email = document.getElementById("register-email").value.trim();
+            const password = document.getElementById("register-password").value.trim();
+            const registerError = document.getElementById("register-error");
+
+            if (!email || !password) {
+                registerError.textContent = "Vui lòng điền đủ thông tin.";
+                return;
+            }
+
+            localStorage.setItem('email', email);
+            localStorage.setItem('password', password);
+            alert("Đăng ký thành công!");
+            showLoginForm();
+        }
+
+        function login() {
+            const email = document.getElementById("login-email").value.trim();
+            const password = document.getElementById("login-password").value.trim();
+            const loginError = document.getElementById("login-error");
+
+            const savedEmail = localStorage.getItem('email');
+            const savedPassword = localStorage.getItem('password');
+
+            if (!email || !password) {
+                loginError.textContent = "Vui lòng điền đủ thông tin.";
+                return;
+            }
+
+            if (email === savedEmail && password === savedPassword) {
+                showProfile(email);
+            } else {
+                loginError.textContent = "Email hoặc mật khẩu không đúng!";
+            }
+        }
+
+        function forgotPassword() {
+            const email = document.getElementById("login-email").value.trim();
+            const forgotError = document.getElementById("forgot-error");
+
+            if (!email) {
+                forgotError.textContent = "Vui lòng nhập email để đặt lại mật khẩu.";
+                return;
+            }
+
+            const savedEmail = localStorage.getItem('email');
+
+            if (email !== savedEmail) {
+                forgotError.textContent = "Email không tồn tại trong hệ thống!";
+            } else {
+                alert("Liên hệ bộ phận hỗ trợ để đặt lại mật khẩu.");
+            }
+        }
+
+        function showLoginForm() {
+            document.getElementById("login-form").style.display = "block";
+            document.getElementById("register-form").style.display = "block";
+            document.getElementById("profile").style.display = "none";
+        }
+
+        function showProfile(email) {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("register-form").style.display = "none";
+            document.getElementById("profile").style.display = "block";
+            document.getElementById("profile-email").textContent = email;
+        }
+
+        function logout() {
+            localStorage.removeItem('email');
+            localStorage.removeItem('password');
+            showLoginForm();
+        }
+
+        if (localStorage.getItem('email') && localStorage.getItem('password')) {
+            showProfile(localStorage.getItem('email'));
+        } else {
+            showLoginForm();
+        }
+    </script>
 
 </body>
 </html>
