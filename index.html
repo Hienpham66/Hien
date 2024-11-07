@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gửi Mã Xác Minh</title>
+    <!-- Liên kết tới EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
@@ -14,39 +15,7 @@
         <p id="message"></p>
     </div>
 
-    <script type="text/javascript">
-        // Khởi tạo EmailJS với Public Key của bạn
-        (function() {
-            emailjs.init("rbQ0ILUyu2HIcCioh");  // Thay thế bằng Public Key của bạn
-        })();
-
-        // Hàm gửi mã xác minh qua email
-        function sendVerificationCode() {
-            const email = document.getElementById('forgot-email').value; // Lấy email người dùng nhập
-            if (!email) {
-                document.getElementById('message').innerText = 'Vui lòng nhập email của bạn.';
-                return;
-            }
-
-            // Tạo mã xác minh ngẫu nhiên (6 chữ số)
-            const code = Math.floor(100000 + Math.random() * 900000); 
-
-            // Cấu hình thông tin gửi email
-            const templateParams = {
-                to_email: email,  // Email người nhận (người dùng)
-                code: code         // Mã xác minh
-            };
-
-            // Gửi email qua EmailJS (dùng Service ID và Template ID của bạn)
-            emailjs.send("service_2qg399z", "template_u1lcbi6", templateParams)
-                .then((response) => {
-                    document.getElementById('message').innerText = 'Mã xác minh đã được gửi đến email của bạn.';
-                    console.log('Email gửi thành công!', response.status, response.text);
-                }, (error) => {
-                    document.getElementById('message').innerText = 'Có lỗi xảy ra khi gửi email.';
-                    console.error('Gửi email thất bại:', error);
-                });
-        }
-    </script>
+    <!-- Liên kết tệp script.js từ GitHub -->
+    <script src="https://raw.githubusercontent.com/username/my-web-project/main/script.js"></script>
 </body>
 </html>
