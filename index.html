@@ -3,66 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang gửi mã xác minh</title>
+    <title>Gửi Mã Xác Minh</title>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function(){
-            emailjs.init("rbQ0ILUyu2HIcCioh"); // Public Key từ EmailJS
-        })();
-    </script>
 </head>
 <body>
-    <h2>Nhận mã xác minh</h2>
-    <input type="email" id="forgot-email" placeholder="Nhập email của bạn">
-    <button onclick="sendVerificationCode()">Gửi mã xác minh</button>
-    <p id="message"></p>
-
-    <!-- Trường nhập mã xác minh -->
-    <div id="verification-section" style="display:none;">
-        <h3>Nhập mã xác minh</h3>
-        <input type="text" id="verification-code" placeholder="Nhập mã xác minh">
-        <button onclick="verifyCode()">Xác minh</button>
-        <p id="verification-message"></p>
+    <div id="auth-section">
+        <h2>Quên Mật Khẩu?</h2>
+        <input type="email" id="forgot-email" placeholder="Nhập email để nhận mã code">
+        <button onclick="sendVerificationCode()">Gửi mã xác minh</button>
+        <p id="message"></p>
     </div>
 
-    <script>
-        let sentCode = ""; // Biến để lưu mã đã gửi
+    <script type="text/javascript">
+        // Khởi tạo EmailJS với Public Key của bạn
+        (function() {
+            emailjs.init("rbQ0ILUyu2HIcCioh");  // Thay thế bằng Public Key của bạn
+        })();
 
-        // Hàm gửi mã xác minh
+        // Hàm gửi mã xác minh qua email
         function sendVerificationCode() {
-            const email = document.getElementById('forgot-email').value; // Email người dùng nhập
+            const email = document.getElementById('forgot-email').value; // Lấy email người dùng nhập
             if (!email) {
                 document.getElementById('message').innerText = 'Vui lòng nhập email của bạn.';
                 return;
             }
 
-            const code = Math.floor(100000 + Math.random() * 900000); // Tạo mã ngẫu nhiên 6 chữ số
-            sentCode = code; // Lưu mã đã gửi
+            // Tạo mã xác minh ngẫu nhiên (6 chữ số)
+            const code = Math.floor(100000 + Math.random() * 900000); 
 
+            // Cấu hình thông tin gửi email
             const templateParams = {
-                to_email: email,  // Thay thế bằng email người dùng nhập
+                to_email: email,  // Email người nhận (người dùng)
                 code: code         // Mã xác minh
             };
 
-            // Gửi email qua EmailJS
+            // Gửi email qua EmailJS (dùng Service ID và Template ID của bạn)
             emailjs.send("service_2qg399z", "template_u1lcbi6", templateParams)
                 .then((response) => {
                     document.getElementById('message').innerText = 'Mã xác minh đã được gửi đến email của bạn.';
-                    document.getElementById('verification-section').style.display = 'block'; // Hiển thị phần nhập mã xác minh
+                    console.log('Email gửi thành công!', response.status, response.text);
                 }, (error) => {
                     document.getElementById('message').innerText = 'Có lỗi xảy ra khi gửi email.';
                     console.error('Gửi email thất bại:', error);
                 });
-        }
-
-        // Hàm xác minh mã
-        function verifyCode() {
-            const userCode = document.getElementById('verification-code').value; // Mã người dùng nhập
-            if (userCode === sentCode.toString()) {
-                document.getElementById('verification-message').innerText = 'Mã xác minh chính xác!';
-            } else {
-                document.getElementById('verification-message').innerText = 'Mã xác minh không chính xác. Vui lòng thử lại.';
-            }
         }
     </script>
 </body>
