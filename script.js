@@ -1,15 +1,15 @@
 (function() {
-    emailjs.init("rbQ0ILUyu2HIcCioh");  // Public Key của bạn từ EmailJS
+    emailjs.init("rbQ0ILUyu2HIcCioh");  // Public Key từ EmailJS
 })();
 
 function sendVerificationCode() {
-    const email = document.getElementById('forgot-email').value;
+    const email = document.getElementById('forgot-email').value;  // Lấy email người dùng nhập
     if (!email) {
         document.getElementById('message').innerText = 'Vui lòng nhập email của bạn.';
         return;
     }
 
-    const code = Math.floor(100000 + Math.random() * 900000);
+    const code = Math.floor(100000 + Math.random() * 900000); // Tạo mã ngẫu nhiên 6 chữ số
 
     const templateParams = {
         to_email: email,  // Email của người nhận
