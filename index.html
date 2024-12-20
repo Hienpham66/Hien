@@ -104,6 +104,64 @@
         #close-notification:hover {
             background: #007acc;
         }
+
+        /* Nút 3 chấm */
+        #three-dots-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 30px;
+            color: white;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Phần nạp tiền */
+        #payment-section {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        #payment-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 400px;
+            text-align: center;
+        }
+        #payment-box h3 {
+            color: #333;
+            font-size: 20px;
+        }
+        #payment-box p {
+            color: #333;
+            font-size: 16px;
+        }
+        #payment-box img {
+            width: 100px;
+            margin: 10px 0;
+        }
+
+        /* Nút đóng phần nạp tiền */
+        #close-payment {
+            background: #00bfff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #close-payment:hover {
+            background: #007acc;
+        }
     </style>
 </head>
 <body>
@@ -112,7 +170,7 @@
         <div id="notification-box">
             <h2>SHOP NHÓX Phamthehien trang wed thử nghiệm</h2>
             <p>
-               hihi :) <br>
+                hihi :) <br>
                 • 😓😓<br>
                 • 🥲. <br>
             </p>
@@ -120,10 +178,27 @@
         </div>
     </div>
 
+    <!-- Nút 3 chấm -->
+    <button id="three-dots-button">
+        <i class="fas fa-ellipsis-v"></i>
+    </button>
+
+    <!-- Phần nạp tiền -->
+    <div id="payment-section">
+        <div id="payment-box">
+            <h3>Thông tin nạp tiền</h3>
+            <p>Mã QR:</p>
+            <img src="IMG_3757.jpeg" alt="QR Code">
+            <p>STK: 6907205383545</p>
+            <p>Chủ tài khoản: Pham The Hien</p>
+            <button id="close-payment">Đóng</button>
+        </div>
+    </div>
+
     <!-- Nội dung chính -->
     <h1>Chào mừng đến với trang cá nhân của tôi</h1>
     <h2>Phạm Thế Hiển</h2>
-    
+
     <!-- Thêm hình ảnh cá nhân và tích xanh -->
     <div class="profile-container">
         <img src="IMG_2728.PNG" alt="Ảnh của tôi"> <!-- Hình ảnh profile -->
@@ -139,7 +214,7 @@
             <i class="fab fa-tiktok"></i> <!-- Biểu tượng TikTok -->
         </a>
     </div>
-    
+
     <!-- Thêm video -->
     <h3>Video giới thiệu</h3>
     <video width="320" height="180" controls>
@@ -151,6 +226,16 @@
         // Đóng thông báo khi nhấn nút
         document.getElementById("close-notification").addEventListener("click", function() {
             document.getElementById("notification-overlay").style.display = "none";
+        });
+
+        // Hiển thị/ẩn phần nạp tiền khi nhấn nút 3 chấm
+        document.getElementById("three-dots-button").addEventListener("click", function() {
+            document.getElementById("payment-section").style.display = "flex";
+        });
+
+        // Đóng phần nạp tiền khi nhấn nút Đóng
+        document.getElementById("close-payment").addEventListener("click", function() {
+            document.getElementById("payment-section").style.display = "none";
         });
     </script>
 </body>
