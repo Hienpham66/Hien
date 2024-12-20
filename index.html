@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Phạm Thế Hiển</title>
+    <title>Hien Pham - Wed của Phạm Thế Hiển</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Thư viện Font Awesome -->
     <style>
         body {
@@ -54,10 +54,73 @@
             text-decoration: none;
             color: #007bff; /* Màu chữ cho liên kết */
         }
+        /* Phần nền mờ */
+        #notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Màu nền mờ */
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* Hộp thông báo */
+        #notification-box {
+            background: white;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        #notification-box h2 {
+            color: orange;
+            font-size: 20px;
+        }
+
+        #notification-box p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #333;
+        }
+
+        /* Nút đóng */
+        #close-notification {
+            background: #00bfff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        #close-notification:hover {
+            background: #007acc;
+        }
     </style>
 </head>
 <body>
+    <!-- Phần thông báo -->
+    <div id="notification-overlay">
+        <div id="notification-box">
+            <h2>SHOP NHÓX GAMING XIN CHÀO CÁC BẠN</h2>
+            <p>
+                Mới mở thêm mục ACC REG và RANDOM REG SS - 2 mục này nick đều trắng thông tin không liên kết FB và tỷ lệ thắng 100% hoặc 0 Game nhé mọi người.<br>
+                • AE mua nick lưu ý mua xong nhớ thêm số điện thoại vào nick và đổi mật khẩu ngay nhé.<br>
+                • Chế độ bảo hành acc Reg: bao back acc vĩnh viễn trong 24h từ ngày mua 1 đổi 1.
+            </p>
+            <button id="close-notification">Đóng</button>
+        </div>
+    </div>
 
+    <!-- Nội dung chính -->
     <h1>Chào mừng đến với trang cá nhân của tôi</h1>
     <h2>Phạm Thế Hiển</h2>
     
@@ -84,5 +147,11 @@
         Trình duyệt của bạn không hỗ trợ video.
     </video>
 
+    <script>
+        // Đóng thông báo khi nhấn nút
+        document.getElementById("close-notification").addEventListener("click", function() {
+            document.getElementById("notification-overlay").style.display = "none";
+        });
+    </script>
 </body>
 </html>
