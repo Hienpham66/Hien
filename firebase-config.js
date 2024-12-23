@@ -1,16 +1,17 @@
-// Import các hàm cần thiết từ SDK Firebase
+// firebase-config.js
 import { initializeApp } from "firebase/app";
 import { getDatabase } from "firebase/database";
 
-// Cấu hình Firebase của bạn (Lấy từ Firebase Console)
+// Cấu hình Firebase của bạn
 const firebaseConfig = {
-  apiKey: "AIzaSyDJwRe9zskEYElHzIF8YWFvIaB-6smpEKU",  // Thay thế bằng apiKey của bạn
-  authDomain: "chatapp-d03c0.firebaseapp.com",        // Thay thế bằng authDomain của bạn
-  projectId: "chatapp-d03c0",                         // Thay thế bằng projectId của bạn
-  storageBucket: "chatapp-d03c0.appspot.com",         // Thay thế bằng storageBucket của bạn
-  messagingSenderId: "745755141877",                  // Thay thế bằng messagingSenderId của bạn
-  appId: "1:745755141877:web:2a583a287ccc94a48c07bc", // Thay thế bằng appId của bạn
-  measurementId: "G-CN8G3L780P"                       // Thay thế bằng measurementId của bạn
+  apiKey: "AIzaSyDJwRe9zskEYElHzIF8YWFvIaB-6smpEKU",
+  authDomain: "chatapp-d03c0.firebaseapp.com",
+  projectId: "chatapp-d03c0",
+  storageBucket: "chatapp-d03c0.appspot.com",
+  messagingSenderId: "745755141877",
+  appId: "1:745755141877:web:2a583a287ccc94a48c07bc",
+  measurementId: "G-CN8G3L780P",
+  databaseURL: "https://chatapp-d03c0-default-rtdb.firebaseio.com/" // URL Firebase Realtime Database
 };
 
 // Khởi tạo Firebase
