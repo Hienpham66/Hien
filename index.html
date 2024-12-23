@@ -1,121 +1,40 @@
+<!-- index.html (Trang A) -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hien Pham - Web của Phạm Thế Hiển</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* CSS của bạn vẫn giữ nguyên */
-    </style>
+    <title>Trang A - Gửi tin nhắn</title>
 </head>
 <body>
-    <!-- Phần thông báo -->
-    <div id="notification-overlay">
-        <div id="notification-box">
-            <h2>Phamthehien - wed</h2>
-            <p>
-                hihi :) <br>
-                • 😓😓<br>
-                • 🥲. <br>
-            </p>
-            <button id="close-notification">Đóng</button>
-        </div>
-    </div>
 
-    <!-- Nội dung chính -->
-    <h1>Chào mừng đến với trang cá nhân của tôi</h1>
-    <h2>Phạm Thế Hiển</h2>
+    <h1>Trang A - Gửi tin nhắn</h1>
 
-    <div class="profile-container">
-        <img src="IMG_2728.PNG" alt="Ảnh của tôi">
-        <i class="fas fa-check-circle verified-icon"></i>
-    </div>
-
-    <div class="social-icons">
-        <a href="https://www.facebook.com/hienpham192008?mibextid=LQQJ4d" target="_blank">
-            <i class="fab fa-facebook-square"></i>
-        </a>
-        <a href="https://www.tiktok.com/@betehien" target="_blank">
-            <i class="fab fa-tiktok"></i>
-        </a>
-    </div>
-
-    <h3>Video giới thiệu</h3>
-    <video width="320" height="180" controls>
-        <source src="Video121.mp4.MOV" type="video/mp4">
-        Trình duyệt của bạn không hỗ trợ video.
-    </video>
-
-    <!-- Nút mở hộp chat -->
-    <div id="chat-button" style="position: fixed; bottom: 20px; right: 20px; cursor: pointer;">
-        <i class="fas fa-comment-alt" style="font-size: 36px; color: white;"></i>
-    </div>
-
-    <!-- Hộp chat -->
-    <div class="chat-box" id="chat-box">
-        <header>Hỗ trợ trực tuyến</header>
-        <textarea id="chat-message" placeholder="Nhập tin nhắn của bạn..."></textarea>
-        <button id="send-message">Gửi</button>
-    </div>
-
-    <!-- Form nhập tên và tin nhắn -->
-    <div>
-        <input type="text" id="username" placeholder="Nhập tên của bạn" />
-        <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
-        <button onclick="sendMessage()">Gửi</button>
-    </div>
+    <input type="text" id="username" placeholder="Nhập tên của bạn" />
+    <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
+    <button onclick="sendMessage()">Gửi</button>
 
     <script type="module">
-        import { db } from './firebase-config.js';  // Đảm bảo rằng bạn đã có cấu hình Firebase
+        import { db } from './firebase-config.js';
         import { ref, push, set } from 'firebase/database';
 
-        // Gửi tin nhắn
         function sendMessage() {
             const messageText = document.getElementById("messageInput").value;
             const username = document.getElementById("username").value;
 
             if (messageText && username) {
-                // Lấy tham chiếu đến node "messages" trong Firebase
                 const messagesRef = ref(db, 'messages');
                 const newMessageRef = push(messagesRef);
-                
-                // Gửi tin nhắn vào Firebase
                 set(newMessageRef, {
                     username: username,
                     message: messageText,
                     timestamp: Date.now()
                 });
 
-                // Xóa ô nhập sau khi gửi
-                document.getElementById("messageInput").value = '';
-                document.getElementById("username").value = ''; // Xóa tên người dùng sau khi gửi
+                document.getElementById("messageInput").value = ''; // Xóa ô nhập sau khi gửi
             }
         }
-
-        // Hộp chat
-        const chatButton = document.getElementById("chat-button");
-        const chatBox = document.getElementById("chat-box");
-        const sendMessageButton = document.getElementById("send-message");
-        const chatMessage = document.getElementById("chat-message");
-
-        chatButton.addEventListener("click", () => {
-            if (chatBox.style.display === "none" || chatBox.style.display === "") {
-                chatBox.style.display = "flex"; // Hiển thị hộp chat
-            } else {
-                chatBox.style.display = "none"; // Ẩn hộp chat
-            }
-        });
-
-        sendMessageButton.addEventListener("click", () => {
-            const message = chatMessage.value.trim();
-            if (message) {
-                alert(`Tin nhắn đã gửi: ${message}`);
-                chatMessage.value = ""; // Xóa nội dung sau khi gửi
-            } else {
-                alert("Vui lòng nhập tin nhắn!");
-            }
-        });
     </script>
+
 </body>
 </html>
