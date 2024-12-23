@@ -6,161 +6,14 @@
     <title>Hien Pham - Web của Phạm Thế Hiển</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-image: url('IMG_123.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-            padding: 20px;
-            color: white;
-        }
-
-        h1, h2 {
-            margin: 20px 0;
-        }
-
-        .profile-container {
-            display: inline-block;
-            position: relative;
-        }
-        img {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            margin-top: 20px;
-        }
-        .verified-icon {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: #00bfff;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .social-icons a {
-            font-size: 36px;
-            color: white;
-            transition: transform 0.3s ease, color 0.3s ease;
-        }
-        .social-icons a:hover {
-            transform: scale(1.2);
-            color: #00bfff;
-        }
-
-        #notification-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        #notification-box {
-            background: white;
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        #notification-box h2 {
-            color: orange;
-            font-size: 20px;
-        }
-        #notification-box p {
-            font-size: 16px;
-            color: #333;
-        }
-        #close-notification {
-            background: #00bfff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-            font-size: 16px;
-        }
-        #close-notification:hover {
-            background: #007acc;
-        }
-
-        body.dark-mode {
-            background-color: #121212;
-            color: white;
-        }
-        body.dark-mode a {
-            color: #00bfff;
-        }
-
-        /* Hộp chat */
-        .chat-box {
-            position: fixed;
-            bottom: 80px; /* Cách nút mở chat */
-            right: 20px;
-            background: white;
-            width: 300px;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            display: none; /* Ẩn mặc định */
-            flex-direction: column;
-        }
-
-        .chat-box header {
-            background: #00bfff;
-            padding: 10px;
-            color: white;
-            font-size: 16px;
-            border-radius: 10px 10px 0 0;
-            text-align: center;
-        }
-
-        .chat-box textarea {
-            width: 100%;
-            padding: 10px;
-            border: none;
-            resize: none;
-            height: 80px;
-            font-size: 14px;
-            border-radius: 0;
-        }
-
-        .chat-box button {
-            background: #00bfff;
-            color: white;
-            padding: 10px;
-            border: none;
-            width: 100%;
-            border-radius: 0 0 10px 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .chat-box button:hover {
-            background: #007acc;
-        }
+        /* CSS của bạn vẫn giữ nguyên */
     </style>
 </head>
 <body>
     <!-- Phần thông báo -->
     <div id="notification-overlay">
         <div id="notification-box">
-            <h2>SHOP NHÓX Phamthehien - Trang web thử nghiệm</h2>
+            <h2>Phamthehien - wed</h2>
             <p>
                 hihi :) <br>
                 • 😓😓<br>
@@ -173,7 +26,7 @@
     <!-- Nội dung chính -->
     <h1>Chào mừng đến với trang cá nhân của tôi</h1>
     <h2>Phạm Thế Hiển</h2>
-    
+
     <div class="profile-container">
         <img src="IMG_2728.PNG" alt="Ảnh của tôi">
         <i class="fas fa-check-circle verified-icon"></i>
@@ -206,11 +59,39 @@
         <button id="send-message">Gửi</button>
     </div>
 
-    <script>
-        // Đóng thông báo
-        document.getElementById("close-notification").addEventListener("click", function() {
-            document.getElementById("notification-overlay").style.display = "none";
-        });
+    <!-- Form nhập tên và tin nhắn -->
+    <div>
+        <input type="text" id="username" placeholder="Nhập tên của bạn" />
+        <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+
+    <script type="module">
+        import { db } from './firebase-config.js';  // Đảm bảo rằng bạn đã có cấu hình Firebase
+        import { ref, push, set } from 'firebase/database';
+
+        // Gửi tin nhắn
+        function sendMessage() {
+            const messageText = document.getElementById("messageInput").value;
+            const username = document.getElementById("username").value;
+
+            if (messageText && username) {
+                // Lấy tham chiếu đến node "messages" trong Firebase
+                const messagesRef = ref(db, 'messages');
+                const newMessageRef = push(messagesRef);
+                
+                // Gửi tin nhắn vào Firebase
+                set(newMessageRef, {
+                    username: username,
+                    message: messageText,
+                    timestamp: Date.now()
+                });
+
+                // Xóa ô nhập sau khi gửi
+                document.getElementById("messageInput").value = '';
+                document.getElementById("username").value = ''; // Xóa tên người dùng sau khi gửi
+            }
+        }
 
         // Hộp chat
         const chatButton = document.getElementById("chat-button");
