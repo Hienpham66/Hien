@@ -1,21 +1,20 @@
-<!-- index.html (Trang A) -->
 <!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang A - Gửi tin nhắn</title>
+    <title>Trang A - Gửi Tin Nhắn</title>
 </head>
 <body>
 
-    <h1>Trang A - Gửi tin nhắn</h1>
+    <h1>Trang A - Gửi Tin Nhắn</h1>
 
     <input type="text" id="username" placeholder="Nhập tên của bạn" />
     <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
     <button onclick="sendMessage()">Gửi</button>
 
     <script type="module">
-        import { db } from './firebase-config.js';
+        import { db } from './firebase-config.js';  // Đảm bảo đường dẫn đến firebase-config đúng
         import { ref, push, set } from 'firebase/database';
 
         function sendMessage() {
@@ -23,18 +22,28 @@
             const username = document.getElementById("username").value;
 
             if (messageText && username) {
-                const messagesRef = ref(db, 'messages');
+                const messagesRef = ref(db, 'messages');  // Đảm bảo rằng bạn đang tham chiếu đúng node
                 const newMessageRef = push(messagesRef);
+                
+                // Gửi dữ liệu đến Firebase
                 set(newMessageRef, {
                     username: username,
                     message: messageText,
                     timestamp: Date.now()
+                })
+                .then(() => {
+                    alert('Tin nhắn đã được gửi!');  // Thông báo gửi thành công
+                })
+                .catch((error) => {
+                    console.error('Có lỗi khi gửi tin nhắn: ', error);  // Hiển thị lỗi nếu có
                 });
 
-                document.getElementById("messageInput").value = ''; // Xóa ô nhập sau khi gửi
+                // Xóa nội dung ô nhập sau khi gửi
+                document.getElementById("messageInput").value = ''; 
+            } else {
+                alert('Vui lòng nhập tên và tin nhắn!');
             }
         }
     </script>
-
 </body>
 </html>
