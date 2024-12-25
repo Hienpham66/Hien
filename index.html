@@ -104,10 +104,19 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 20px;
+            margin-bottom: 20px; /* Adds space between the close button and content */
         }
         .close-button:hover {
             background-color: #e43f00;
+        }
+        /* Style for the red border around "Đã Bán" */
+        .da-ban-title {
+            border: 2px solid #ff0000; /* Red border around title */
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
         }
     </style>
 </head>
@@ -167,14 +176,17 @@
 
         <!-- Phần Đã Bán -->
         <div id="da-ban">
+            <!-- Nút Đóng ở đầu -->
+            <button class="close-button" onclick="closeDaBan()">Đóng</button>
+            
+            <!-- Tiêu đề Đã Bán với khung đỏ -->
+            <div class="da-ban-title">
+                Đã Bán
+            </div>
+
             <div class="image-banner">
                 <img src="IMG_3825.jpeg" alt="Đã Bán">
             </div>
-            <div class="stats">
-                <p>Đã Bán</p>
-            </div>
-            <!-- Nút Đóng -->
-            <button class="close-button" onclick="closeDaBan()">Đóng</button>
         </div>
     </div>
 
