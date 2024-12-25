@@ -7,7 +7,9 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #1e1e1e;
+            background-image: url('IMG_3477.jpeg'); /* Thay đổi nền trang */
+            background-size: cover; /* Đảm bảo ảnh nền phủ hết màn hình */
+            background-position: center; /* Canh giữa ảnh nền */
             color: white;
             margin: 0;
             padding: 0;
@@ -16,14 +18,14 @@
             display: none;
         }
         .banner {
-            background-color: #ff4500;
+            background-color: rgba(255, 69, 0, 0.7); /* Màu nền nửa trong suốt */
             padding: 10px;
             font-size: 24px;
             font-weight: bold;
             text-align: center;
         }
         .content {
-            background-color: #333;
+            background-color: rgba(51, 51, 51, 0.8); /* Nền hơi trong suốt cho phần content */
             padding: 20px;
             text-align: center;
         }
@@ -242,6 +244,13 @@
 
     <script>
         function toggleView(showSection) {
+            // Ẩn tất cả các phần
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("ban-xlim-cu").classList.add("hidden");
+            document.getElementById("ban-xlim-moi").classList.add("hidden");
+
+            // Hiện phần trang chủ hoặc phần tương
+                function toggleView(showSection) {
             // Ẩn tất cả các phần
             document.getElementById("home").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.add("hidden");
