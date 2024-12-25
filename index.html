@@ -91,8 +91,23 @@
     </style>
 </head>
 <body>
+    <!-- Trang Chủ -->
+    <div id="home">
+        <div class="banner">
+            Trang Chủ
+        </div>
+        <div class="content">
+            <div class="button">
+                <a href="#" onclick="toggleView('ban-xlim-cu', '')">Bán Xlim Cũ</a>
+            </div>
+            <div class="button">
+                <a href="#" onclick="toggleView('ban-xlim-moi', '')">Bán Tinh Dầu Chai</a>
+            </div>
+        </div>
+    </div>
+
     <!-- Phần Bán Xlim Cũ -->
-    <div id="ban-xlim-cu">
+    <div id="ban-xlim-cu" class="hidden">
         <div class="banner">
             Bán Xlim Cũ
         </div>
@@ -140,18 +155,18 @@
             </div>
         </div>
         <div class="button">
-            <a href="#" onclick="toggleView('ban-xlim-cu', 'xem-tat-ca-1')">Đóng</a>
+            <a href="#" onclick="toggleView('home', '')">Đóng</a>
         </div>
     </div>
 
-    <!-- Phần Bán Xlim Mới -->
-    <div id="ban-xlim-moi">
+    <!-- Phần Bán Tinh Dầu Chai -->
+    <div id="ban-xlim-moi" class="hidden">
         <div class="banner">
-            Bán Xlim Mới
+            Bán Tinh Dầu Chai
         </div>
         <div class="content">
             <div class="image-banner">
-                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Mới">
+                <img src="IMG_3680.jpeg" alt="Banner Bán Tinh Dầu Chai">
             </div>
             <div class="button">
                 <a href="#" onclick="toggleView('ban-xlim-moi', 'xem-tat-ca-2')">Xem Tất Cả</a>
@@ -188,21 +203,27 @@
             </div>
         </div>
         <div class="button">
-            <a href="#" onclick="toggleView('ban-xlim-moi', 'xem-tat-ca-2')">Đóng</a>
+            <a href="#" onclick="toggleView('home', '')">Đóng</a>
         </div>
     </div>
 
     <script>
         function toggleView(showSection, showItems) {
             // Ẩn tất cả các phần
+            document.getElementById("home").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.add("hidden");
             document.getElementById("ban-xlim-moi").classList.add("hidden");
             document.getElementById("xem-tat-ca-1").classList.add("hidden");
             document.getElementById("xem-tat-ca-2").classList.add("hidden");
 
-            // Hiện phần được yêu cầu
-            document.getElementById(showSection).classList.remove("hidden");
-            document.getElementById(showItems).classList.remove("hidden");
+            // Hiện phần trang chủ hoặc phần tương ứng
+            if (showSection) {
+                document.getElementById(showSection).classList.remove("hidden");
+            }
+
+            if (showItems) {
+                document.getElementById(showItems).classList.remove("hidden");
+            }
         }
     </script>
 </body>
