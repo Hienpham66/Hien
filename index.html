@@ -118,6 +118,25 @@
         .close-button:hover {
             background-color: #e43f00;
         }
+        /* New menu style outside of the "Đã Bán" section */
+        .menu-section {
+            background-color: #ff4500;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .menu-section .menu-button {
+            text-decoration: none;
+            background-color: #ffc107;
+            color: black;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .menu-section .menu-button:hover {
+            background-color: #ffa000;
+        }
     </style>
 </head>
 <body>
@@ -188,6 +207,11 @@
             <!-- Nút Đóng ở ngoài phần Đã Bán -->
             <button class="close-button" onclick="closeDaBan()">Đóng</button>
         </div>
+    </div>
+
+    <!-- Menu Phía Ngoài (giống "Xem Tất Cả") -->
+    <div class="menu-section">
+        <a href="#" class="menu-button" onclick="showXemTatCa()">Xem Tất Cả</a>
     </div>
 
     <script>
