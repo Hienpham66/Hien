@@ -26,6 +26,7 @@
             background-color: #333;
             padding: 20px;
             text-align: center;
+            margin-bottom: 20px;
         }
         .image-banner img {
             width: 100%;
@@ -74,26 +75,6 @@
             color: yellow;
             margin: 10px 0;
         }
-        /* Style for the "Đã Bán" section */
-        #da-ban {
-            text-align: center;
-            padding: 20px;
-        }
-        #da-ban .da-ban-title {
-            border: 2px solid #ff0000; /* Red border */
-            color: white;
-            display: inline-block;
-            font-size: 18px;
-            padding: 5px 10px;
-            margin: 10px 0;
-            background-color: #ff4500; /* Red background */
-        }
-        #da-ban img {
-            width: 50%;
-            max-width: 200px;
-            margin: 10px 0;
-        }
-        /* Style for the "Đóng" button */
         .close-button {
             text-decoration: none;
             background-color: #ff4500;
@@ -111,17 +92,35 @@
     </style>
 </head>
 <body>
-    <!-- Phần Bán Xlim Cũ -->
+    <!-- Phần Bán Xlim Cũ (Khối 1) -->
     <div id="ban-xlim-cu">
         <div class="banner">
-            Bán Xlim Cũ
+            Bán Xlim Cũ - Khối 1
         </div>
         <div class="content">
             <div class="image-banner">
-                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
+                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ 1">
             </div>
             <div class="stats">
                 <p>Số tài khoản đang bán: Xlim V2</p>
+            </div>
+            <div class="button">
+                <a onclick="showXemTatCa()">Xem Tất Cả</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Bán Xlim Cũ (Khối 2) -->
+    <div id="ban-xlim-cu-2">
+        <div class="banner">
+            Bán Xlim Cũ - Khối 2
+        </div>
+        <div class="content">
+            <div class="image-banner">
+                <img src="IMG_3823.jpeg" alt="Banner Bán Xlim Cũ 2">
+            </div>
+            <div class="stats">
+                <p>Số tài khoản đang bán: Xlim V3</p>
             </div>
             <div class="button">
                 <a onclick="showXemTatCa()">Xem Tất Cả</a>
@@ -163,11 +162,6 @@
                 </div>
             </div>
         </div>
-        <!-- Phần "Đã Bán" -->
-        <div id="da-ban">
-            <div class="da-ban-title">Đã Bán</div>
-            <img src="IMG_3825.jpeg" alt="Đã Bán">
-        </div>
         <!-- Nút Đóng -->
         <a class="close-button" onclick="closeXemTatCa()">Đóng</a>
     </div>
@@ -175,12 +169,14 @@
     <script>
         function showXemTatCa() {
             document.getElementById("ban-xlim-cu").classList.add("hidden");
+            document.getElementById("ban-xlim-cu-2").classList.add("hidden");
             document.getElementById("xem-tat-ca").classList.remove("hidden");
         }
 
         function closeXemTatCa() {
             document.getElementById("xem-tat-ca").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.remove("hidden");
+            document.getElementById("ban-xlim-cu-2").classList.remove("hidden");
         }
     </script>
 </body>
