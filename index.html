@@ -3,47 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang A - Gửi Tin Nhắn</title>
+    <title>Bán Xlim Cũ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .banner {
+            background-color: #ff4500;
+            padding: 10px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .content {
+            background-color: #333;
+            padding: 20px;
+        }
+        .image-banner img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 10px;
+        }
+        .stats {
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+        .button {
+            margin-top: 20px;
+        }
+        .button a {
+            text-decoration: none;
+            background-color: #ffc107;
+            color: black;
+            padding: 10px 20px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .button a:hover {
+            background-color: #ffa000;
+        }
+    </style>
 </head>
 <body>
-
-    <h1>Trang A - Gửi Tin Nhắn</h1>
-
-    <input type="text" id="username" placeholder="Nhập tên của bạn" />
-    <input type="text" id="messageInput" placeholder="Nhập tin nhắn..." />
-    <button onclick="sendMessage()">Gửi</button>
-
-    <script type="module">
-        import { db } from './firebase-config.js';  // Đảm bảo đường dẫn đến firebase-config đúng
-        import { ref, push, set } from 'firebase/database';
-
-        function sendMessage() {
-            const messageText = document.getElementById("messageInput").value;
-            const username = document.getElementById("username").value;
-
-            if (messageText && username) {
-                const messagesRef = ref(db, 'messages');  // Đảm bảo rằng bạn đang tham chiếu đúng node
-                const newMessageRef = push(messagesRef);
-                
-                // Gửi dữ liệu đến Firebase
-                set(newMessageRef, {
-                    username: username,
-                    message: messageText,
-                    timestamp: Date.now()
-                })
-                .then(() => {
-                    alert('Tin nhắn đã được gửi!');  // Thông báo gửi thành công
-                })
-                .catch((error) => {
-                    console.error('Có lỗi khi gửi tin nhắn: ', error);  // Hiển thị lỗi nếu có
-                });
-
-                // Xóa nội dung ô nhập sau khi gửi
-                document.getElementById("messageInput").value = ''; 
-            } else {
-                alert('Vui lòng nhập tên và tin nhắn!');
-            }
-        }
-    </script>
+    <div class="banner">
+        Bán Xlim Cũ
+    </div>
+    <div class="content">
+        <div class="image-banner">
+            <img src="your-banner-image-url.jpg" alt="Banner Image">
+        </div>
+        <div class="stats">
+            <p>Số tài khoản đang bán: Xlim V2</p>
+        </div>
+        <div class="button">
+            <a href="#">Xem Tất Cả</a>
+        </div>
+    </div>
 </body>
 </html>
