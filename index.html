@@ -104,13 +104,13 @@
                 <p>Số tài khoản đang bán: Xlim V2</p>
             </div>
             <div class="button">
-                <a onclick="showXemTatCa()">Xem Tất Cả</a>
+                <a onclick="showXemTatCa('xem-tat-ca-1')">Xem Tất Cả</a>
             </div>
         </div>
     </div>
 
-    <!-- Phần Xem Tất Cả -->
-    <div id="xem-tat-ca" class="hidden">
+    <!-- Phần Xem Tất Cả 1 -->
+    <div id="xem-tat-ca-1" class="hidden">
         <div class="container">
             <!-- Item 1 -->
             <div class="item">
@@ -144,10 +144,63 @@
         </div>
     </div>
 
+    <!-- Phần Bán Xlim Mới -->
+    <div id="ban-xlim-moi">
+        <div class="banner">
+            Bán Xlim Mới
+        </div>
+        <div class="content">
+            <div class="image-banner">
+                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Mới">
+            </div>
+            <div class="stats">
+                <p>Số tài khoản đang bán: Xlim V3</p>
+            </div>
+            <div class="button">
+                <a onclick="showXemTatCa('xem-tat-ca-2')">Xem Tất Cả</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Xem Tất Cả 2 -->
+    <div id="xem-tat-ca-2" class="hidden">
+        <div class="container">
+            <!-- Item 1 -->
+            <div class="item">
+                <img src="IMG_3681.heic" alt="Item 1">
+                <div class="price">450k</div>
+                <div class="button">
+                    <a href="#">Mua Ngay</a>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="item">
+                <img src="IMG_3823.jpeg" alt="Item 2">
+                <div class="price">450k</div>
+                <div class="button">
+                    <a href="#">Mua Ngay</a>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div class="item">
+                <img src="IMG_3822.jpeg" alt="Item 3">
+                <div class="price">450k</div>
+                <div class="button">
+                    <a href="#">Mua Ngay</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function showXemTatCa() {
-            document.getElementById("ban-xlim-cu").classList.add("hidden");
-            document.getElementById("xem-tat-ca").classList.remove("hidden");
+        function showXemTatCa(id) {
+            if(id === 'xem-tat-ca-1') {
+                document.getElementById("ban-xlim-cu").classList.add("hidden");
+                document.getElementById("xem-tat-ca-1").classList.remove("hidden");
+            } else if(id === 'xem-tat-ca-2') {
+                document.getElementById("ban-xlim-moi").classList.add("hidden");
+                document.getElementById("xem-tat-ca-2").classList.remove("hidden");
+            }
         }
     </script>
 </body>
