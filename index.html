@@ -104,7 +104,7 @@
                 <p>Số tài khoản đang bán: Xlim V2</p>
             </div>
             <div class="button">
-                <a onclick="showXemTatCa('xem-tat-ca-1')">Xem Tất Cả</a>
+                <a href="#" onclick="toggleView('ban-xlim-cu', 'xem-tat-ca-1')">Xem Tất Cả</a>
             </div>
         </div>
     </div>
@@ -157,7 +157,7 @@
                 <p>Số tài khoản đang bán: Xlim V3</p>
             </div>
             <div class="button">
-                <a onclick="showXemTatCa('xem-tat-ca-2')">Xem Tất Cả</a>
+                <a href="#" onclick="toggleView('ban-xlim-moi', 'xem-tat-ca-2')">Xem Tất Cả</a>
             </div>
         </div>
     </div>
@@ -193,14 +193,16 @@
     </div>
 
     <script>
-        function showXemTatCa(id) {
-            if(id === 'xem-tat-ca-1') {
-                document.getElementById("ban-xlim-cu").classList.add("hidden");
-                document.getElementById("xem-tat-ca-1").classList.remove("hidden");
-            } else if(id === 'xem-tat-ca-2') {
-                document.getElementById("ban-xlim-moi").classList.add("hidden");
-                document.getElementById("xem-tat-ca-2").classList.remove("hidden");
-            }
+        function toggleView(showSection, showItems) {
+            // Ẩn tất cả các phần
+            document.getElementById("ban-xlim-cu").classList.add("hidden");
+            document.getElementById("ban-xlim-moi").classList.add("hidden");
+            document.getElementById("xem-tat-ca-1").classList.add("hidden");
+            document.getElementById("xem-tat-ca-2").classList.add("hidden");
+
+            // Hiện phần được yêu cầu
+            document.getElementById(showSection).classList.remove("hidden");
+            document.getElementById(showItems).classList.remove("hidden");
         }
     </script>
 </body>
