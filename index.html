@@ -137,6 +137,12 @@
         .menu-section .menu-button:hover {
             background-color: #ffa000;
         }
+        /* "Xem Tất Cả" phần ngoài menu */
+        #xem-tat-ca {
+            background-color: #333;
+            padding: 20px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -158,7 +164,18 @@
         </div>
     </div>
 
-    <!-- Phần Xem Tất Cả -->
+    <!-- Phần "Đã Bán" -->
+    <div id="da-ban">
+        <div class="da-ban-title">
+            Đã Bán
+        </div>
+        <div class="image-banner">
+            <img src="IMG_3825.jpeg" alt="Đã Bán">
+        </div>
+        <button class="close-button" onclick="closeDaBan()">Đóng</button>
+    </div>
+
+    <!-- Phần "Xem Tất Cả" Mới -->
     <div id="xem-tat-ca" class="hidden">
         <div class="container">
             <!-- Hàng 1 -->
@@ -192,21 +209,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- Phần Đã Bán -->
-        <div id="da-ban">
-            <!-- Tiêu đề Đã Bán với khung đỏ -->
-            <div class="da-ban-title">
-                Đã Bán
-            </div>
-
-            <div class="image-banner">
-                <img src="IMG_3825.jpeg" alt="Đã Bán">
-            </div>
-
-            <!-- Nút Đóng ở ngoài phần Đã Bán -->
-            <button class="close-button" onclick="closeDaBan()">Đóng</button>
-        </div>
     </div>
 
     <!-- Menu Phía Ngoài (giống "Xem Tất Cả") -->
@@ -221,7 +223,7 @@
         }
 
         function closeDaBan() {
-            document.getElementById("xem-tat-ca").classList.add("hidden");
+            document.getElementById("da-ban").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.remove("hidden");
         }
     </script>
