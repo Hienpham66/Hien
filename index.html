@@ -13,11 +13,14 @@
             padding: 0;
         }
         .container {
-            display: flex;
+            display: none;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
             padding: 20px;
+        }
+        .container.active {
+            display: flex;
         }
         .item {
             background-color: #333;
@@ -57,9 +60,30 @@
         .button a:hover {
             background-color: #ffa000;
         }
+        .view-all {
+            text-align: center;
+            margin: 20px;
+        }
+        .view-all button {
+            padding: 10px 20px;
+            background-color: #ffc107;
+            border: none;
+            color: black;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .view-all button:hover {
+            background-color: #ffa000;
+        }
     </style>
 </head>
 <body>
+    <div class="view-all">
+        <button onclick="toggleView()">Xem Tất Cả</button>
+    </div>
+
     <div class="container">
         <!-- Cặp 1 -->
         <div class="item">
@@ -97,5 +121,12 @@
             <div class="sold-out">Đã Bán</div>
         </div>
     </div>
+
+    <script>
+        function toggleView() {
+            const container = document.querySelector('.container');
+            container.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
