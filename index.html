@@ -171,32 +171,9 @@
                 <p>Số tài khoản đang bán: Xlim V3</p>
             </div>
             <div class="button">
-                <a onclick="showXemTatCa2()">Xem Tất Cả</a>
+                <a href="#">Liên hệ để mua</a>
             </div>
         </div>
-    </div>
-
-    <!-- Phần "Xem Tất Cả" - Khối 2 -->
-    <div id="xem-tat-ca-2" class="hidden">
-        <div class="container">
-            <!-- Hàng 1 -->
-            <div class="item">
-                <img src="IMG_3822.jpeg" alt="Item 3">
-                <div class="price">400k</div>
-                <div class="button">
-                    <a href="#">Mua Ngay</a>
-                </div>
-            </div>
-            <div class="item">
-                <img src="IMG_3681.heic" alt="Item 4">
-                <div class="price">450k</div>
-                <div class="button">
-                    <a href="#">Mua Ngay</a>
-                </div>
-            </div>
-        </div>
-        <!-- Nút Đóng -->
-        <a class="close-button" onclick="closeXemTatCa2()">Đóng</a>
     </div>
 
     <script>
@@ -209,17 +186,6 @@
         function closeXemTatCa1() {
             document.getElementById("xem-tat-ca-1").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.remove("hidden");
-        }
-
-        // Khối 2
-        function showXemTatCa2() {
-            document.getElementById("ban-xlim-cu-2").classList.add("hidden");
-            document.getElementById("xem-tat-ca-2").classList.remove("hidden");
-        }
-
-        function closeXemTatCa2() {
-            document.getElementById("xem-tat-ca-2").classList.add("hidden");
-            document.getElementById("ban-xlim-cu-2").classList.remove("hidden");
         }
     </script>
 </body>
