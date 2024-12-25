@@ -7,9 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('IMG_3477.jpeg'); /* Thay đổi nền trang */
-            background-size: cover; /* Đảm bảo ảnh nền phủ hết màn hình */
-            background-position: center; /* Canh giữa ảnh nền */
+            background-color: #1e1e1e;
             color: white;
             margin: 0;
             padding: 0;
@@ -18,14 +16,14 @@
             display: none;
         }
         .banner {
-            background-color: rgba(255, 69, 0, 0.7); /* Màu nền nửa trong suốt */
+            background-color: #ff4500;
             padding: 10px;
             font-size: 24px;
             font-weight: bold;
             text-align: center;
         }
         .content {
-            background-color: rgba(51, 51, 51, 0.8); /* Nền hơi trong suốt cho phần content */
+            background-color: #333;
             padding: 20px;
             text-align: center;
         }
@@ -125,7 +123,7 @@
         <div class="content">
             <div class="image-banner">
                 <!-- Máy ảnh ở trang chủ -->
-                <img src="IMG_3477.jpeg" alt="Banner Máy Ảnh">
+                <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
             </div>
             <div class="button">
                 <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
@@ -137,7 +135,7 @@
             <div class="content">
                 <div class="image-banner">
                     <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
-                    <img src="IMG_3477.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
                 </div>
                 <div class="button">
                     <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
@@ -161,7 +159,7 @@
         </div>
         <div class="content">
             <div class="image-banner">
-                <img src="IMG_3477.jpeg" alt="Banner Bán Xlim Cũ">
+                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
             </div>
             <div class="container">
                 <!-- Item 1 -->
@@ -208,7 +206,7 @@
         <div class="content">
             <div class="image-banner">
                 <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
-                <img src="IMG_3477.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
             </div>
             <div class="container">
                 <!-- Item 1 -->
@@ -244,13 +242,6 @@
 
     <script>
         function toggleView(showSection) {
-            // Ẩn tất cả các phần
-            document.getElementById("home").classList.add("hidden");
-            document.getElementById("ban-xlim-cu").classList.add("hidden");
-            document.getElementById("ban-xlim-moi").classList.add("hidden");
-
-            // Hiện phần trang chủ hoặc phần tương
-                function toggleView(showSection) {
             // Ẩn tất cả các phần
             document.getElementById("home").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.add("hidden");
