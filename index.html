@@ -76,13 +76,13 @@
         }
         /* Style for the "Đã Bán" section */
         #da-ban {
-            background-color: #ff0000;
+            background-color: #ffcc00; /* Yellow background for the "Đã Bán" section */
             color: white;
             padding: 20px;
             text-align: center;
             margin-top: 20px;
-            border: 2px solid #ffffff; /* Add white border */
-            border-radius: 10px; /* Rounded corners */
+            border: 2px solid #ffcc00; /* Yellow border */
+            border-radius: 10px;
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
@@ -95,6 +95,15 @@
             font-size: 24px;
             font-weight: bold;
         }
+        /* Style for the red border around "Đã Bán" */
+        .da-ban-title {
+            border: 2px solid #ff0000; /* Red border around title */
+            display: inline-block;
+            padding: 5px 10px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
         /* Style for the close button */
         .close-button {
             background-color: #ff4500;
@@ -104,19 +113,10 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            margin-bottom: 20px; /* Adds space between the close button and content */
+            margin-top: 20px;
         }
         .close-button:hover {
             background-color: #e43f00;
-        }
-        /* Style for the red border around "Đã Bán" */
-        .da-ban-title {
-            border: 2px solid #ff0000; /* Red border around title */
-            display: inline-block;
-            padding: 5px 10px;
-            font-size: 24px;
-            font-weight: bold;
-            color: white;
         }
     </style>
 </head>
@@ -176,9 +176,6 @@
 
         <!-- Phần Đã Bán -->
         <div id="da-ban">
-            <!-- Nút Đóng ở đầu -->
-            <button class="close-button" onclick="closeDaBan()">Đóng</button>
-            
             <!-- Tiêu đề Đã Bán với khung đỏ -->
             <div class="da-ban-title">
                 Đã Bán
@@ -187,6 +184,9 @@
             <div class="image-banner">
                 <img src="IMG_3825.jpeg" alt="Đã Bán">
             </div>
+
+            <!-- Nút Đóng ở ngoài phần Đã Bán -->
+            <button class="close-button" onclick="closeDaBan()">Đóng</button>
         </div>
     </div>
 
