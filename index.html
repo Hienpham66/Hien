@@ -76,51 +76,23 @@
         }
         /* Style for the "Đã Bán" section */
         #da-ban {
-            background-color: #ffcc00; /* Yellow background for the "Đã Bán" section */
-            color: white;
-            padding: 20px;
             text-align: center;
-            margin-top: 20px;
-            border: 2px solid #ffcc00; /* Yellow border */
-            border-radius: 10px;
-            width: fit-content;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 20px;
         }
-        #da-ban .image-banner img {
-            width: 50%; /* Reduce the image size */
+        #da-ban img {
+            width: 50%;
             max-width: 200px;
         }
-        #da-ban .stats {
-            font-size: 24px;
-            font-weight: bold;
-        }
-        /* Style for the red border around "Đã Bán" */
-        .da-ban-title {
-            border: 2px solid #ff0000; /* Red border around title */
+        #da-ban .da-ban-title {
+            border: 2px solid #ff0000; /* Red border */
+            color: white;
             display: inline-block;
-            padding: 5px 10px;
             font-size: 24px;
-            font-weight: bold;
-            color: white;
+            padding: 5px 10px;
+            margin: 10px 0;
         }
-        /* Style for the close button */
-        .close-button {
-            background-color: #ff4500;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 20px;
-        }
-        .close-button:hover {
-            background-color: #e43f00;
-        }
-        /* New menu style outside of the "Đã Bán" section */
         .menu-section {
-            background-color: #ff4500;
+            background-color: #333;
             padding: 20px;
             margin-top: 20px;
             text-align: center;
@@ -137,11 +109,11 @@
         .menu-section .menu-button:hover {
             background-color: #ffa000;
         }
-        /* "Xem Tất Cả" phần ngoài menu */
-        #xem-tat-ca {
-            background-color: #333;
-            padding: 20px;
-            margin-top: 20px;
+        .menu-section img {
+            width: 50%;
+            max-width: 200px;
+            border-radius: 10px;
+            margin: 10px 0;
         }
     </style>
 </head>
@@ -169,13 +141,21 @@
         <div class="da-ban-title">
             Đã Bán
         </div>
-        <div class="image-banner">
-            <img src="IMG_3825.jpeg" alt="Đã Bán">
-        </div>
-        <button class="close-button" onclick="closeDaBan()">Đóng</button>
+        <img src="IMG_3825.jpeg" alt="Đã Bán">
     </div>
 
-    <!-- Phần "Xem Tất Cả" Mới -->
+    <!-- Menu bên ngoài với "Xem Tất Cả" -->
+    <div class="menu-section">
+        <h3>Menu</h3>
+        <div>
+            <a class="menu-button" onclick="showXemTatCa()">Xem Tất Cả</a>
+        </div>
+        <div>
+            <img src="IMG_3680.jpeg" alt="Hình ảnh menu">
+        </div>
+    </div>
+
+    <!-- Phần "Xem Tất Cả" -->
     <div id="xem-tat-ca" class="hidden">
         <div class="container">
             <!-- Hàng 1 -->
@@ -211,20 +191,10 @@
         </div>
     </div>
 
-    <!-- Menu Phía Ngoài (giống "Xem Tất Cả") -->
-    <div class="menu-section">
-        <a href="#" class="menu-button" onclick="showXemTatCa()">Xem Tất Cả</a>
-    </div>
-
     <script>
         function showXemTatCa() {
             document.getElementById("ban-xlim-cu").classList.add("hidden");
             document.getElementById("xem-tat-ca").classList.remove("hidden");
-        }
-
-        function closeDaBan() {
-            document.getElementById("da-ban").classList.add("hidden");
-            document.getElementById("ban-xlim-cu").classList.remove("hidden");
         }
     </script>
 </body>
