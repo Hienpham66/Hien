@@ -112,43 +112,49 @@
             height: 40px;
             margin-right: 10px;
         }
-        /* Đăng nhập, đăng ký */
-        .login, .register {
-            text-align: center;
-            padding: 20px;
-            background-color: #444;
-            border-radius: 10px;
-            margin: 20px auto;
-            width: 300px;
-        }
-        .input-field {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        .button a {
-            text-decoration: none;
-            background-color: #ffc107;
-            color: black;
-            padding: 10px 20px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .button a:hover {
-            background-color: #ffa000;
-        }
     </style>
 </head>
 <body>
+    <!-- Đăng nhập -->
+    <div id="login">
+        <div class="banner">
+            Đăng Nhập
+        </div>
+        <div class="content">
+            <form id="login-form">
+                <input type="text" id="username" placeholder="Tên đăng nhập" required><br><br>
+                <input type="password" id="password" placeholder="Mật khẩu" required><br><br>
+                <button type="submit">Đăng Nhập</button>
+            </form>
+            <div class="button">
+                <a href="#" onclick="toggleView('register')">Đăng Ký</a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Trang Chủ -->
-    <div id="home">
+    <!-- Đăng ký -->
+    <div id="register" class="hidden">
+        <div class="banner">
+            Đăng Ký
+        </div>
+        <div class="content">
+            <form id="register-form">
+                <input type="text" id="new-username" placeholder="Tên đăng nhập" required><br><br>
+                <input type="password" id="new-password" placeholder="Mật khẩu" required><br><br>
+                <button type="submit">Đăng Ký</button>
+            </form>
+            <div class="button">
+                <a href="#" onclick="toggleView('login')">Đã có tài khoản? Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trang Chủ (Ẩn khi chưa đăng nhập) -->
+    <div id="home" class="hidden">
         <div class="banner">
             Trang Chủ
         </div>
+        
         <div class="content">
             <div class="image-banner">
                 <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
@@ -157,123 +163,60 @@
                 <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
             </div>
         </div>
-        
-        <div class="button">
-            <a href="#" onclick="toggleView('login')">Đăng Nhập</a>
-        </div>
-        
-        <div class="button">
-            <a href="#" onclick="toggleView('register')">Đăng Ký</a>
-        </div>
-
-        <div class="support">
-            <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-                Liên Hệ Hỗ Trợ
-            </a>
-        </div>
-    </div>
-
-    <!-- Đăng nhập -->
-    <div id="login" class="hidden">
-        <div class="login">
-            <h2>Đăng Nhập</h2>
-            <input type="text" id="loginUsername" class="input-field" placeholder="Tài khoản" required>
-            <input type="password" id="loginPassword" class="input-field" placeholder="Mật khẩu" required>
-            <button onclick="loginUser()" class="button">Đăng Nhập</button>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Quay lại</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Đăng ký -->
-    <div id="register" class="hidden">
-        <div class="register">
-            <h2>Đăng Ký</h2>
-            <input type="text" id="registerUsername" class="input-field" placeholder="Tài khoản" required>
-            <input type="password" id="registerPassword" class="input-field" placeholder="Mật khẩu" required>
-            <button onclick="registerUser()" class="button">Đăng Ký</button>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Quay lại</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Phần Bán Xlim Cũ -->
-    <div id="ban-xlim-cu" class="hidden">
-        <div class="banner">
-            Bán Xlim Cũ
-        </div>
-        <div class="content">
-            <div class="image-banner">
-                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
-            </div>
-            <div class="container">
-                <div class="item">
-                    <img src="IMG_3681.heic" alt="Item 1">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
-                </div>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Đóng</a>
-            </div>
-        </div>
     </div>
 
     <script>
-        function toggleView(showSection) {
-            document.getElementById("home").classList.add("hidden");
+        function toggleView(viewId) {
+            // Ẩn tất cả các phần
             document.getElementById("login").classList.add("hidden");
             document.getElementById("register").classList.add("hidden");
-            document.getElementById("ban-xlim-cu").classList.add("hidden");
+            document.getElementById("home").classList.add("hidden");
 
-            if (showSection) {
-                document.getElementById(showSection).classList.remove("hidden");
-            }
-        }
-
-        // Đăng ký người dùng
-        function registerUser() {
-            let username = document.getElementById("registerUsername").value;
-            let password = document.getElementById("registerPassword").value;
-            
-            if (username && password) {
-                localStorage.setItem("username", username);
-                localStorage.setItem("password", password);
-                alert("Đăng ký thành công!");
-                toggleView('home');
-            } else {
-                alert("Vui lòng điền đầy đủ thông tin!");
-            }
-        }
-
-        // Đăng nhập người dùng
-        function loginUser() {
-            let username = document.getElementById("loginUsername").value;
-            let password = document.getElementById("loginPassword").value;
-            
-            let storedUsername = localStorage.getItem("username");
-            let storedPassword = localStorage.getItem("password");
-            
-            if (username === storedUsername && password === storedPassword) {
-                                alert("Đăng nhập thành công!");
-                toggleView('home'); // Quay lại trang chủ sau khi đăng nhập thành công
-            } else {
-                alert("Sai tài khoản hoặc mật khẩu!");
-            }
+            // Hiện phần tương ứng
+            document.getElementById(viewId).classList.remove("hidden");
         }
 
         // Kiểm tra đăng nhập khi tải trang
         window.onload = function() {
             let storedUsername = localStorage.getItem("username");
             if (storedUsername) {
-                alert("Chào mừng " + storedUsername + " quay lại!");
+                // Nếu đã đăng nhập, hiển thị trang chủ
                 toggleView('home');
+            } else {
+                // Nếu chưa đăng nhập, hiển thị trang đăng nhập
+                toggleView('login');
             }
+        }
+
+        // Xử lý đăng nhập
+        document.getElementById("login-form").onsubmit = function(e) {
+            e.preventDefault();
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let storedUsername = localStorage.getItem("username");
+            let storedPassword = localStorage.getItem("password");
+
+            if (username === storedUsername && password === storedPassword) {
+                localStorage.setItem("username", username);  // Lưu thông tin đăng nhập
+                alert("Đăng nhập thành công!");
+                toggleView('home'); // Chuyển sang trang chủ
+            } else {
+                alert("Sai tài khoản hoặc mật khẩu!");
+            }
+        }
+
+        // Xử lý đăng ký tài khoản
+        document.getElementById("register-form").onsubmit = function(e) {
+            e.preventDefault();
+            let newUsername = document.getElementById("new-username").value;
+            let newPassword = document.getElementById("new-password").value;
+
+            localStorage.setItem("username", newUsername);  // Lưu tài khoản
+            localStorage.setItem("password", newPassword);  // Lưu mật khẩu
+
+            alert("Đăng ký thành công! Bạn có thể đăng nhập ngay.");
+            toggleView('login'); // Quay lại màn hình đăng nhập
         }
     </script>
 </body>
