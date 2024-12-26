@@ -13,6 +13,11 @@
             color: white;
             margin: 0;
             padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
         }
         .hidden {
             display: none;
@@ -25,19 +30,31 @@
             text-align: center;
         }
         .content {
-            background-color: #333;
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 20px;
             text-align: center;
-        }
-        .image-banner img {
-            width: 100%;
-            max-width: 600px;
             border-radius: 10px;
+            width: 300px;
         }
-        .stats {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 1.8;
+        .content input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+        }
+        .content button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffc107;
+            color: black;
+            border: none;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .content button:hover {
+            background-color: #ffa000;
         }
         .button a {
             text-decoration: none;
@@ -47,48 +64,11 @@
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
         }
         .button a:hover {
             background-color: #ffa000;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-        .item {
-            background-color: #333;
-            border-radius: 10px;
-            width: 200px;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-        .item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: yellow;
-            margin: 10px 0;
-        }
-        .sold {
-            background-color: #ff0000;
-            color: white;
-            padding: 5px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .sold img {
-            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
-            border-radius: 5px;
-            margin-top: 10px;
         }
         /* Liên hệ Hỗ Trợ */
         .support {
@@ -122,8 +102,8 @@
         </div>
         <div class="content">
             <form id="login-form">
-                <input type="text" id="username" placeholder="Tên đăng nhập" required><br><br>
-                <input type="password" id="password" placeholder="Mật khẩu" required><br><br>
+                <input type="text" id="username" placeholder="Tên đăng nhập" required><br>
+                <input type="password" id="password" placeholder="Mật khẩu" required><br>
                 <button type="submit">Đăng Nhập</button>
             </form>
             <div class="button">
@@ -139,8 +119,8 @@
         </div>
         <div class="content">
             <form id="register-form">
-                <input type="text" id="new-username" placeholder="Tên đăng nhập" required><br><br>
-                <input type="password" id="new-password" placeholder="Mật khẩu" required><br><br>
+                <input type="text" id="new-username" placeholder="Tên đăng nhập" required><br>
+                <input type="password" id="new-password" placeholder="Mật khẩu" required><br>
                 <button type="submit">Đăng Ký</button>
             </form>
             <div class="button">
