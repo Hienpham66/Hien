@@ -34,11 +34,6 @@
             max-width: 600px;
             border-radius: 10px;
         }
-        .stats {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 1.8;
-        }
         .button a {
             text-decoration: none;
             background-color: #ffc107;
@@ -51,106 +46,15 @@
         .button a:hover {
             background-color: #ffa000;
         }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-        .item {
-            background-color: #333;
-            border-radius: 10px;
-            width: 200px;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-        .item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: yellow;
-            margin: 10px 0;
-        }
-        .sold {
-            background-color: #ff0000;
-            color: white;
-            padding: 5px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .sold img {
-            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        /* Liên hệ Hỗ Trợ */
-        .support {
-            background-color: #3b5998;
-            padding: 20px;
-            color: white;
-            text-align: center;
-            margin-top: 40px;
-            border-radius: 10px;
-        }
-        .support a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .support a:hover {
-            color: #ffdd57;
-        }
-        .support img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-        }
     </style>
 </head>
 <body>
     <!-- Trang Chủ -->
     <div id="home" class="hidden">
-        <div class="banner">
-            Trang Chủ
-        </div>
-        
-        <!-- Phần Bán Xlim Cũ -->
+        <div class="banner">Trang Chủ</div>
         <div class="content">
-            <div class="image-banner">
-                <!-- Máy ảnh ở trang chủ -->
-                <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
-            </div>
-        </div>
-
-        <div style="margin-top: 40px;">
-            <!-- Phần Bán Tinh Dầu Chai -->
-            <div class="content">
-                <div class="image-banner">
-                    <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
-                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
-                </div>
-                <div class="button">
-                    <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Liên Hệ Hỗ Trợ (Facebook) -->
-        <div class="support">
-            <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-                Liên Hệ Hỗ Trợ
-            </a>
+            <button onclick="toggleView('login')">Đăng Nhập</button>
+            <button onclick="toggleView('register')">Đăng Ký</button>
         </div>
     </div>
 
@@ -184,8 +88,6 @@
         function toggleView(showSection) {
             // Ẩn tất cả các phần
             document.getElementById("home").classList.add("hidden");
-            document.getElementById("ban-xlim-cu").classList.add("hidden");
-            document.getElementById("ban-xlim-moi").classList.add("hidden");
             document.getElementById("login").classList.add("hidden");
             document.getElementById("register").classList.add("hidden");
 
