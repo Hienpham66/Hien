@@ -134,7 +134,12 @@
 
             if (users[username] && users[username] === password) {
                 alert("Đăng nhập thành công!");
+                
+                // Ẩn phần đăng nhập/đăng ký
                 document.getElementById('login-section').classList.add('hidden');
+                document.getElementById('register-section').classList.add('hidden');
+                
+                // Hiển thị trang chủ
                 document.getElementById('main-content').classList.remove('hidden');
             } else {
                 alert("Tên đăng nhập hoặc mật khẩu không đúng!");
