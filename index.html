@@ -86,7 +86,7 @@
             text-align: center;
         }
         .sold img {
-            width: 150px;
+            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
             border-radius: 5px;
             margin-top: 10px;
         }
@@ -111,18 +111,6 @@
             width: 40px;
             height: 40px;
             margin-right: 10px;
-        }
-        /* Form đăng nhập và đăng ký */
-        .form-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        input[type="text"], input[type="password"] {
-            padding: 10px;
-            margin: 10px;
-            width: 200px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
         }
     </style>
 </head>
@@ -166,108 +154,29 @@
         </div>
     </div>
 
-    <!-- Form Đăng Nhập -->
-    <div id="login" class="form-container">
-        <h2>Đăng Nhập</h2>
-        <input type="text" id="login-username" placeholder="Tên đăng nhập"><br>
-        <input type="password" id="login-password" placeholder="Mật khẩu"><br>
-        <button onclick="login()">Đăng Nhập</button>
-        <p>Chưa có tài khoản? <a href="#" onclick="toggleView('register')">Đăng ký ngay</a></p>
-    </div>
-
-    <!-- Form Đăng Ký -->
-    <div id="register" class="form-container hidden">
-        <h2>Đăng Ký</h2>
-        <input type="text" id="register-username" placeholder="Tên đăng nhập"><br>
-        <input type="password" id="register-password" placeholder="Mật khẩu"><br>
-        <button onclick="register()">Đăng Ký</button>
-        <p>Đã có tài khoản? <a href="#" onclick="toggleView('login')">Đăng nhập</a></p>
-    </div>
-
-    <!-- Phần Bán Xlim Cũ -->
-    <div id="ban-xlim-cu" class="hidden">
-        <div class="banner">
-            Bán Xlim Cũ
-        </div>
+    <!-- Đăng Nhập -->
+    <div id="login" class="hidden">
+        <div class="banner">Đăng Nhập</div>
         <div class="content">
-            <div class="image-banner">
-                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
-            </div>
-            <div class="container">
-                <!-- Item 1 -->
-                <div class="item">
-                    <img src="IMG_3681.heic" alt="Item 1">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="item">
-                    <img src="IMG_3823.jpeg" alt="Item 2">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="item">
-                    <img src="IMG_3822.jpeg" alt="Item 3">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
-                </div>
-                <!-- Đã Bán -->
-                <div class="sold">
-                    <p>Đã Bán</p>
-                    <img src="IMG_3825.jpeg" alt="Đã Bán">
-                </div>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Đóng</a>
-            </div>
+            <label for="login-username">Tên đăng nhập:</label>
+            <input type="text" id="login-username" name="username"><br><br>
+            <label for="login-password">Mật khẩu:</label>
+            <input type="password" id="login-password" name="password"><br><br>
+            <button onclick="login()">Đăng Nhập</button><br><br>
+            <a href="#" onclick="toggleView('register')">Chưa có tài khoản? Đăng ký ngay!</a>
         </div>
     </div>
 
-    <!-- Phần Bán Tinh Dầu Chai -->
-    <div id="ban-xlim-moi" class="hidden">
-        <div class="banner">
-            Bán Tinh Dầu Chai
-        </div>
+    <!-- Đăng Ký -->
+    <div id="register" class="hidden">
+        <div class="banner">Đăng Ký</div>
         <div class="content">
-            <div class="image-banner">
-                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
-            </div>
-            <div class="container">
-                <!-- Item 1 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 1">
-                                        <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 2">
-                    <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 3">
-                    <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Đóng</a>
-            </div>
+            <label for="register-username">Tên đăng nhập:</label>
+            <input type="text" id="register-username" name="username"><br><br>
+            <label for="register-password">Mật khẩu:</label>
+            <input type="password" id="register-password" name="password"><br><br>
+            <button onclick="register()">Đăng Ký</button><br><br>
+            <a href="#" onclick="toggleView('login')">Đã có tài khoản? Đăng nhập ngay!</a>
         </div>
     </div>
 
@@ -292,7 +201,11 @@
 
             // Kiểm tra đăng nhập
             if (username === "user" && password === "password") {
-                // Nếu đăng nhập thành công, chuyển tới trang chủ
+                // Lưu thông tin đăng nhập vào localStorage
+                localStorage.setItem('isLoggedIn', 'true');
+                localStorage.setItem('username', username);
+
+                // Chuyển tới trang chủ sau khi đăng nhập thành công
                 alert("Đăng nhập thành công!");
                 toggleView('home'); // Hiển thị trang chủ
             } else {
@@ -304,9 +217,18 @@
             const username = document.getElementById("register-username").value;
             const password = document.getElementById("register-password").value;
 
-            // Lưu thông tin đăng ký
+            // Lưu thông tin đăng ký (chỉ làm mẫu, không kiểm tra tính hợp lệ)
             alert("Đăng ký thành công!");
             toggleView('login'); // Quay lại đăng nhập sau khi đăng ký thành công
+        }
+
+        // Kiểm tra khi trang được tải lại
+        window.onload = function() {
+            if (localStorage.getItem('isLoggedIn') === 'true') {
+                toggleView('home');
+            } else {
+                toggleView('login');
+            }
         }
     </script>
 </body>
