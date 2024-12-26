@@ -86,7 +86,7 @@
             text-align: center;
         }
         .sold img {
-            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
+            width: 150px;
             border-radius: 5px;
             margin-top: 10px;
         }
@@ -112,27 +112,17 @@
             height: 40px;
             margin-right: 10px;
         }
-        /* Đăng nhập và Đăng ký */
+        /* Form đăng nhập và đăng ký */
         .form-container {
-            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
         }
-        .form-container input {
+        input[type="text"], input[type="password"] {
             padding: 10px;
-            margin: 10px 0;
-            width: 100%;
+            margin: 10px;
+            width: 200px;
             border-radius: 5px;
             border: 1px solid #ccc;
-        }
-        .form-container .button a {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 5px;
-        }
-        .form-container .button a:hover {
-            background-color: #45a049;
         }
     </style>
 </head>
@@ -146,6 +136,7 @@
         <!-- Phần Bán Xlim Cũ -->
         <div class="content">
             <div class="image-banner">
+                <!-- Máy ảnh ở trang chủ -->
                 <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
             </div>
             <div class="button">
@@ -153,13 +144,16 @@
             </div>
         </div>
 
-        <!-- Phần Bán Tinh Dầu Chai -->
-        <div class="content">
-            <div class="image-banner">
-                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
+        <div style="margin-top: 40px;">
+            <!-- Phần Bán Tinh Dầu Chai -->
+            <div class="content">
+                <div class="image-banner">
+                    <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
+                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                </div>
+                <div class="button">
+                    <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
+                </div>
             </div>
         </div>
 
@@ -172,38 +166,22 @@
         </div>
     </div>
 
-    <!-- Phần Đăng Nhập -->
+    <!-- Form Đăng Nhập -->
     <div id="login" class="form-container">
-        <div class="banner">
-            Đăng Nhập
-        </div>
-        <div class="content">
-            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="login-password" placeholder="Mật khẩu" required>
-            <div class="button">
-                <a href="#" onclick="login()">Đăng Nhập</a>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('register')">Đăng Ký</a>
-            </div>
-        </div>
+        <h2>Đăng Nhập</h2>
+        <input type="text" id="login-username" placeholder="Tên đăng nhập"><br>
+        <input type="password" id="login-password" placeholder="Mật khẩu"><br>
+        <button onclick="login()">Đăng Nhập</button>
+        <p>Chưa có tài khoản? <a href="#" onclick="toggleView('register')">Đăng ký ngay</a></p>
     </div>
 
-    <!-- Phần Đăng Ký -->
+    <!-- Form Đăng Ký -->
     <div id="register" class="form-container hidden">
-        <div class="banner">
-            Đăng Ký
-        </div>
-        <div class="content">
-            <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="register-password" placeholder="Mật khẩu" required>
-            <div class="button">
-                <a href="#" onclick="register()">Đăng Ký</a>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('login')">Đã có tài khoản? Đăng nhập</a>
-            </div>
-        </div>
+        <h2>Đăng Ký</h2>
+        <input type="text" id="register-username" placeholder="Tên đăng nhập"><br>
+        <input type="password" id="register-password" placeholder="Mật khẩu"><br>
+        <button onclick="register()">Đăng Ký</button>
+        <p>Đã có tài khoản? <a href="#" onclick="toggleView('login')">Đăng nhập</a></p>
     </div>
 
     <!-- Phần Bán Xlim Cũ -->
@@ -294,8 +272,6 @@
     </div>
 
     <script>
-        let isLoggedIn = false;
-
         function toggleView(showSection) {
             // Ẩn tất cả các phần
             document.getElementById("home").classList.add("hidden");
@@ -304,48 +280,34 @@
             document.getElementById("login").classList.add("hidden");
             document.getElementById("register").classList.add("hidden");
 
-            // Nếu đã đăng nhập, cho phép truy cập vào trang chủ
-            if (isLoggedIn) {
-                if (showSection) {
-                    document.getElementById(showSection).classList.remove("hidden");
-                }
-            } else {
-                if (showSection === 'home') {
-                    document.getElementById('login').classList.remove('hidden');
-                }
+            // Hiện phần trang chủ hoặc phần tương ứng
+            if (showSection) {
+                document.getElementById(showSection).classList.remove("hidden");
             }
         }
 
         function login() {
-            // Lấy thông tin đăng nhập
             const username = document.getElementById("login-username").value;
             const password = document.getElementById("login-password").value;
 
-            // Kiểm tra thông tin đăng nhập (ví dụ đơn giản, bạn có thể thay thế bằng API)
-            if (username === "admin" && password === "12345") {
-                isLoggedIn = true;
-                toggleView('home');
+            // Kiểm tra đăng nhập
+            if (username === "user" && password === "password") {
+                // Nếu đăng nhập thành công, chuyển tới trang chủ
+                alert("Đăng nhập thành công!");
+                toggleView('home'); // Hiển thị trang chủ
             } else {
-                alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+                alert("Sai tài khoản hoặc mật khẩu!");
             }
         }
 
         function register() {
-            // Lấy thông tin đăng ký
             const username = document.getElementById("register-username").value;
             const password = document.getElementById("register-password").value;
 
-            // Chỉ cần kiểm tra đơn giản, bạn có thể thêm các điều kiện bảo mật và API ở đây
-            if (username && password) {
-                alert("Đăng ký thành công!");
-                toggleView('login');
-            } else {
-                alert("Vui lòng điền đầy đủ thông tin!");
-            }
+            // Lưu thông tin đăng ký
+            alert("Đăng ký thành công!");
+            toggleView('login'); // Quay lại đăng nhập sau khi đăng ký thành công
         }
-
-        // Bắt đầu với giao diện đăng nhập
-        toggleView('home');
     </script>
 </body>
 </html>
