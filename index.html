@@ -174,7 +174,137 @@
         <!-- Nội dung shop của bạn -->
         <!-- (Giữ nguyên phần shop hiện tại của bạn ở đây) -->
     </div>
+<!-- Phần Bán Xlim Cũ -->
+        <div class="content">
+            <div class="image-banner">
+                <!-- Máy ảnh ở trang chủ -->
+                <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
+            </div>
+            <div class="button">
+                <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
+            </div>
+        </div>
 
+        <div style="margin-top: 40px;">
+            <!-- Phần Bán Tinh Dầu Chai -->
+            <div class="content">
+                <div class="image-banner">
+                    <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
+                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                </div>
+                <div class="button">
+                    <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liên Hệ Hỗ Trợ (Facebook) -->
+        <div class="support">
+            <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                Liên Hệ Hỗ Trợ
+            </a>
+        </div>
+    </div>
+
+    <!-- Phần Bán Xlim Cũ -->
+    <div id="ban-xlim-cu" class="hidden">
+        <div class="banner">
+            Bán Xlim Cũ
+        </div>
+        <div class="content">
+            <div class="image-banner">
+                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
+            </div>
+            <div class="container">
+                <!-- Item 1 -->
+                <div class="item">
+                    <img src="IMG_3681.heic" alt="Item 1">
+                    <div class="price">350k</div>
+                    <div class="button">
+                        <a href="#">Mua Ngay</a>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="item">
+                    <img src="IMG_3823.jpeg" alt="Item 2">
+                    <div class="price">350k</div>
+                    <div class="button">
+                        <a href="#">Mua Ngay</a>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="item">
+                    <img src="IMG_3822.jpeg" alt="Item 3">
+                    <div class="price">350k</div>
+                    <div class="button">
+                        <a href="#">Mua Ngay</a>
+                    </div>
+                </div>
+                <!-- Đã Bán -->
+                <div class="sold">
+                    <p>Đã Bán</p>
+                    <img src="IMG_3825.jpeg" alt="Đã Bán">
+                </div>
+            </div>
+            <div class="button">
+                <a href="#" onclick="toggleView('home')">Đóng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Bán Tinh Dầu Chai -->
+    <div id="ban-xlim-moi" class="hidden">
+        <div class="banner">
+            Bán Tinh Dầu Chai
+        </div>
+        <div class="content">
+            <div class="image-banner">
+                <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
+                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+            </div>
+            <div class="container">
+                <!-- Item 1 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 1">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 2">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 3">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
+                    </div>
+                </div>
+            </div>
+            <div class="button">
+                <a href="#" onclick="toggleView('home')">Đóng</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleView(showSection) {
+            // Ẩn tất cả các phần
+            document.getElementById("home").classList.add("hidden");
+            document.getElementById("ban-xlim-cu").classList.add("hidden");
+            document.getElementById("ban-xlim-moi").classList.add("hidden");
+
+            // Hiện phần trang chủ hoặc phần tương ứng
+            if (showSection) {
+                document.getElementById(showSection).classList.remove("hidden");
     <script>
         const users = {}; // Dữ liệu giả lập
 
