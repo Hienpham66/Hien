@@ -86,10 +86,11 @@
             text-align: center;
         }
         .sold img {
-            width: 150px;
+            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
             border-radius: 5px;
             margin-top: 10px;
         }
+        /* Liên hệ Hỗ Trợ */
         .support {
             background-color: #3b5998;
             padding: 20px;
@@ -111,62 +112,38 @@
             height: 40px;
             margin-right: 10px;
         }
-        /* Đăng nhập và đăng ký */
-        .login-form, .register-form {
+
+        /* Form đăng nhập và đăng ký */
+        .form-container {
             max-width: 400px;
-            margin: 20px auto;
+            margin: 0 auto;
+            background-color: rgba(0, 0, 0, 0.5);
             padding: 20px;
-            background-color: #444;
             border-radius: 10px;
-            text-align: center;
         }
-        input[type="text"], input[type="password"] {
-            width: 80%;
+        .form-container input {
+            width: 100%;
             padding: 10px;
             margin: 10px 0;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
-        .login-form .button a, .register-form .button a {
-            background-color: #28a745;
+        .form-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff4500;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #ff7000;
         }
     </style>
 </head>
 <body>
-    <!-- Trang Đăng Nhập -->
-    <div id="login" class="hidden">
-        <div class="banner">
-            Đăng Nhập
-        </div>
-        <div class="login-form">
-            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="login-password" placeholder="Mật khẩu" required>
-            <div class="button">
-                <a href="#" onclick="login()">Đăng Nhập</a>
-            </div>
-            <div>
-                <p>Chưa có tài khoản? <a href="#" onclick="toggleView('register')">Đăng ký</a></p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Trang Đăng Ký -->
-    <div id="register" class="hidden">
-        <div class="banner">
-            Đăng Ký
-        </div>
-        <div class="register-form">
-            <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
-            <input type="password" id="register-password" placeholder="Mật khẩu" required>
-            <div class="button">
-                <a href="#" onclick="register()">Đăng Ký</a>
-            </div>
-            <div>
-                <p>Đã có tài khoản? <a href="#" onclick="toggleView('login')">Đăng nhập</a></p>
-            </div>
-        </div>
-    </div>
-
     <!-- Trang Chủ -->
     <div id="home">
         <div class="banner">
@@ -195,12 +172,42 @@
             </div>
         </div>
 
-        <!-- Liên Hệ Hỗ Trợ -->
+        <!-- Liên Hệ Hỗ Trợ (Facebook) -->
         <div class="support">
             <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
                 Liên Hệ Hỗ Trợ
             </a>
+        </div>
+
+        <!-- Đăng Nhập/Đăng Ký -->
+        <div class="content">
+            <div class="button">
+                <a href="#" onclick="toggleView('login')">Đăng Nhập</a>
+                <a href="#" onclick="toggleView('register')">Đăng Ký</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Đăng Nhập -->
+    <div id="login" class="hidden">
+        <div class="form-container">
+            <h2>Đăng Nhập</h2>
+            <input type="text" id="login-username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="login-password" placeholder="Mật khẩu" required>
+            <button onclick="login()">Đăng Nhập</button>
+            <p>Chưa có tài khoản? <a href="#" onclick="toggleView('register')">Đăng Ký</a></p>
+        </div>
+    </div>
+
+    <!-- Phần Đăng Ký -->
+    <div id="register" class="hidden">
+        <div class="form-container">
+            <h2>Đăng Ký</h2>
+            <input type="text" id="register-username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="register-password" placeholder="Mật khẩu" required>
+            <button onclick="register()">Đăng Ký</button>
+            <p>Đã có tài khoản? <a href="#" onclick="toggleView('login')">Đăng Nhập</a></p>
         </div>
     </div>
 
@@ -214,7 +221,6 @@
                 <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
             </div>
             <div class="container">
-                <!-- Item 1 -->
                 <div class="item">
                     <img src="IMG_3681.heic" alt="Item 1">
                     <div class="price">350k</div>
@@ -222,7 +228,6 @@
                         <a href="#">Mua Ngay</a>
                     </div>
                 </div>
-                <!-- Item 2 -->
                 <div class="item">
                     <img src="IMG_3823.jpeg" alt="Item 2">
                     <div class="price">350k</div>
@@ -230,12 +235,57 @@
                         <a href="#">Mua Ngay</a>
                     </div>
                 </div>
-                <!-- Item 3 -->
                 <div class="item">
                     <img src="IMG_3822.jpeg" alt="Item 3">
                     <div class="price">350k</div>
                     <div class="button">
                         <a href="#">Mua Ngay</a>
+                    </div>
+                </div>
+                <div class="sold">
+                    <p>Đã Bán</p>
+                    <img src="IMG_3825.jpeg" alt="Đã Bán">
+                </div>
+            </div>
+            <div class="button">
+                <a href="#" onclick="toggleView('home')">Đóng</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần Bán Tinh Dầu Chai -->
+    <div id="ban-xlim-moi" class="hidden">
+        <div class="banner">
+            Bán Tinh Dầu Chai
+        </div>
+        <div class="content">
+            <div class="image-banner">
+                <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
+                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+            </div>
+            <div class="container">
+                <!-- Item 1 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 1">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 2">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="item">
+                    <img src="IMG_3827.jpeg" alt="Item 3">
+                    <div class="price">185k 5 chai</div>
+                    <div class="button">
+                        <a href="#">Tinh Dầu Chai</a>
                     </div>
                 </div>
             </div>
@@ -254,56 +304,37 @@
             document.getElementById("login").classList.add("hidden");
             document.getElementById("register").classList.add("hidden");
 
-                        // Hiện phần trang chủ hoặc phần tương ứng
+            // Hiện phần trang chủ hoặc phần tương ứng
             if (showSection) {
                 document.getElementById(showSection).classList.remove("hidden");
             }
         }
 
+        // Hàm đăng nhập (chỉ là ví dụ)
         function login() {
-            // Lấy thông tin đăng nhập
-            var username = document.getElementById('login-username').value;
-            var password = document.getElementById('login-password').value;
+            var username = document.getElementById("login-username").value;
+            var password = document.getElementById("login-password").value;
 
-            // Kiểm tra thông tin đăng nhập (ở đây bạn có thể thay thế bằng API hoặc cơ sở dữ liệu)
-            if (username === "user" && password === "password") {
-                // Lưu trạng thái đăng nhập vào localStorage
-                localStorage.setItem('loggedIn', 'true');
-                localStorage.setItem('username', username);
-
-                // Chuyển hướng đến trang chủ
+            if (username && password) {
+                alert("Đăng nhập thành công");
                 toggleView('home');
             } else {
-                alert('Đăng nhập thất bại. Kiểm tra lại tên đăng nhập và mật khẩu.');
+                alert("Vui lòng điền đủ thông tin");
             }
         }
 
+        // Hàm đăng ký (chỉ là ví dụ)
         function register() {
-            // Lấy thông tin đăng ký
-            var username = document.getElementById('register-username').value;
-            var password = document.getElementById('register-password').value;
+            var username = document.getElementById("register-username").value;
+            var password = document.getElementById("register-password").value;
 
-            // Giả lập việc đăng ký (có thể thay thế bằng việc lưu vào cơ sở dữ liệu)
-            alert('Đăng ký thành công!');
-
-            // Quay lại trang đăng nhập
-            toggleView('login');
-        }
-
-        function checkLoginStatus() {
-            // Kiểm tra trạng thái đăng nhập
-            var loggedIn = localStorage.getItem('loggedIn');
-            if (loggedIn === 'true') {
-                // Nếu đã đăng nhập, hiển thị trang chủ
-                toggleView('home');
-            } else {
-                // Nếu chưa đăng nhập, hiển thị trang đăng nhập
+            if (username && password) {
+                alert("Đăng ký thành công");
                 toggleView('login');
+            } else {
+                alert("Vui lòng điền đủ thông tin");
             }
         }
-
-        // Kiểm tra trạng thái đăng nhập khi tải trang
-        window.onload = checkLoginStatus;
     </script>
 </body>
 </html>
