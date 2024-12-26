@@ -17,239 +17,169 @@
         .hidden {
             display: none;
         }
-        .banner {
-            background-color: #ff4500;
-            padding: 10px;
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.8);
         }
-        .content {
+        .login-box {
             background-color: #333;
             padding: 20px;
-            text-align: center;
-        }
-        .image-banner img {
-            width: 100%;
-            max-width: 600px;
             border-radius: 10px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0px 0px 10px #000;
         }
-        .stats {
-            margin-top: 20px;
-            font-size: 18px;
-            line-height: 1.8;
+        .login-box h2 {
+            margin-bottom: 20px;
         }
-        .button a {
-            text-decoration: none;
-            background-color: #ffc107;
-            color: black;
-            padding: 10px 20px;
-            font-weight: bold;
+        .login-box input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
             border-radius: 5px;
+            border: none;
+        }
+        .login-box button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff4500;
+            color: white;
+            font-weight: bold;
             cursor: pointer;
         }
-        .button a:hover {
-            background-color: #ffa000;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-        }
-        .item {
-            background-color: #333;
-            border-radius: 10px;
-            width: 200px;
-            padding: 10px;
-            text-align: center;
-            color: white;
-        }
-        .item img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: yellow;
-            margin: 10px 0;
-        }
-        .sold {
-            background-color: #ff0000;
-            color: white;
-            padding: 5px;
-            font-weight: bold;
-            border-radius: 5px;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .sold img {
-            width: 150px; /* Chỉnh sửa kích thước ảnh nhỏ hơn */
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        /* Liên hệ Hỗ Trợ */
-        .support {
-            background-color: #3b5998;
-            padding: 20px;
-            color: white;
-            text-align: center;
-            margin-top: 40px;
-            border-radius: 10px;
-        }
-        .support a {
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        .support a:hover {
-            color: #ffdd57;
-        }
-        .support img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
+        .login-box button:hover {
+            background-color: #e03e00;
         }
     </style>
 </head>
 <body>
-    <!-- Trang Chủ -->
-    <div id="home">
-        <div class="banner">
-            Trang Chủ
+    <!-- Form đăng nhập -->
+    <div id="login-section" class="login-container">
+        <div class="login-box">
+            <h2>Đăng Nhập</h2>
+            <input type="text" id="username" placeholder="Tên đăng nhập" required>
+            <input type="password" id="password" placeholder="Mật khẩu" required>
+            <button onclick="handleLogin()">Đăng nhập</button>
         </div>
-        
-        <!-- Phần Bán Xlim Cũ -->
-        <div class="content">
-            <div class="image-banner">
-                <!-- Máy ảnh ở trang chủ -->
-                <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
-            </div>
-        </div>
+    </div>
 
-        <div style="margin-top: 40px;">
-            <!-- Phần Bán Tinh Dầu Chai -->
+    <!-- Nội dung chính -->
+    <div id="main-content" class="hidden">
+        <div id="home">
+            <div class="banner">
+                Trang Chủ
+            </div>
+            
+            <!-- Phần Bán Xlim Cũ -->
             <div class="content">
                 <div class="image-banner">
-                    <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
-                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                    <img src="IMG_3680.jpeg" alt="Banner Máy Ảnh">
                 </div>
                 <div class="button">
-                    <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
+                    <a href="#" onclick="toggleView('ban-xlim-cu')">Bán Xlim Cũ</a>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px;">
+                <!-- Phần Bán Tinh Dầu Chai -->
+                <div class="content">
+                    <div class="image-banner">
+                        <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                    </div>
+                    <div class="button">
+                        <a href="#" onclick="toggleView('ban-xlim-moi')">Bán Tinh Dầu Chai</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Liên Hệ Hỗ Trợ -->
+            <div class="support">
+                <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
+                    Liên Hệ Hỗ Trợ
+                </a>
+            </div>
+        </div>
+
+        <!-- Phần Bán Xlim Cũ -->
+        <div id="ban-xlim-cu" class="hidden">
+            <div class="banner">
+                Bán Xlim Cũ
+            </div>
+            <div class="content">
+                <div class="image-banner">
+                    <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
+                </div>
+                <div class="container">
+                    <div class="item">
+                        <img src="IMG_3681.heic" alt="Item 1">
+                        <div class="price">350k</div>
+                        <div class="button">
+                            <a href="#">Mua Ngay</a>
+                        </div>
+                    </div>
+                    <div class="sold">
+                        <p>Đã Bán</p>
+                        <img src="IMG_3825.jpeg" alt="Đã Bán">
+                    </div>
+                </div>
+                <div class="button">
+                    <a href="#" onclick="toggleView('home')">Đóng</a>
                 </div>
             </div>
         </div>
 
-        <!-- Liên Hệ Hỗ Trợ (Facebook) -->
-        <div class="support">
-            <a href="https://www.facebook.com/share/14nVTmBR7r/?mibextid=wwXIfr" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo">
-                Liên Hệ Hỗ Trợ
-            </a>
-        </div>
-    </div>
-
-    <!-- Phần Bán Xlim Cũ -->
-    <div id="ban-xlim-cu" class="hidden">
-        <div class="banner">
-            Bán Xlim Cũ
-        </div>
-        <div class="content">
-            <div class="image-banner">
-                <img src="IMG_3680.jpeg" alt="Banner Bán Xlim Cũ">
+        <!-- Phần Bán Tinh Dầu Chai -->
+        <div id="ban-xlim-moi" class="hidden">
+            <div class="banner">
+                Bán Tinh Dầu Chai
             </div>
-            <div class="container">
-                <!-- Item 1 -->
-                <div class="item">
-                    <img src="IMG_3681.heic" alt="Item 1">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
+            <div class="content">
+                <div class="image-banner">
+                    <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
+                </div>
+                <div class="container">
+                    <div class="item">
+                        <img src="IMG_3827.jpeg" alt="Item 1">
+                        <div class="price">185k 5 chai</div>
+                        <div class="button">
+                            <a href="#">Tinh Dầu Chai</a>
+                        </div>
                     </div>
                 </div>
-                <!-- Item 2 -->
-                <div class="item">
-                    <img src="IMG_3823.jpeg" alt="Item 2">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
+                <div class="button">
+                    <a href="#" onclick="toggleView('home')">Đóng</a>
                 </div>
-                <!-- Item 3 -->
-                <div class="item">
-                    <img src="IMG_3822.jpeg" alt="Item 3">
-                    <div class="price">350k</div>
-                    <div class="button">
-                        <a href="#">Mua Ngay</a>
-                    </div>
-                </div>
-                <!-- Đã Bán -->
-                <div class="sold">
-                    <p>Đã Bán</p>
-                    <img src="IMG_3825.jpeg" alt="Đã Bán">
-                </div>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Đóng</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Phần Bán Tinh Dầu Chai -->
-    <div id="ban-xlim-moi" class="hidden">
-        <div class="banner">
-            Bán Tinh Dầu Chai
-        </div>
-        <div class="content">
-            <div class="image-banner">
-                <!-- Thay ảnh cho Bán Tinh Dầu Chai -->
-                <img src="IMG_3827.jpeg" alt="Banner Bán Tinh Dầu Chai">
-            </div>
-            <div class="container">
-                <!-- Item 1 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 1">
-                    <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 2">
-                    <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="item">
-                    <img src="IMG_3827.jpeg" alt="Item 3">
-                    <div class="price">185k 5 chai</div>
-                    <div class="button">
-                        <a href="#">Tinh Dầu Chai</a>
-                    </div>
-                </div>
-            </div>
-            <div class="button">
-                <a href="#" onclick="toggleView('home')">Đóng</a>
             </div>
         </div>
     </div>
 
     <script>
+        function handleLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const validUsername = "admin"; // Tên đăng nhập hợp lệ
+            const validPassword = "123456"; // Mật khẩu hợp lệ
+
+            if (username === validUsername && password === validPassword) {
+                alert("Đăng nhập thành công!");
+                document.getElementById("login-section").classList.add("hidden");
+                document.getElementById("main-content").classList.remove("hidden");
+            } else {
+                alert("Tên đăng nhập hoặc mật khẩu không đúng!");
+            }
+        }
+
         function toggleView(showSection) {
-            // Ẩn tất cả các phần
             document.getElementById("home").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.add("hidden");
             document.getElementById("ban-xlim-moi").classList.add("hidden");
 
-            // Hiện phần trang chủ hoặc phần tương ứng
             if (showSection) {
                 document.getElementById(showSection).classList.remove("hidden");
             }
