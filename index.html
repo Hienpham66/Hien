@@ -95,21 +95,22 @@
 </head>
 <body>
 
-    <!-- Đăng Nhập / Đăng Ký -->
+    <!-- Đăng Nhập -->
     <div id="login-container" class="login-container">
         <h2>Đăng Nhập</h2>
-        <input type="text" id="username" placeholder="Tên Đăng Nhập">
-        <input type="password" id="password" placeholder="Mật Khẩu">
+        <input type="text" id="username" placeholder="Tên Đăng Nhập" required>
+        <input type="password" id="password" placeholder="Mật Khẩu" required>
         <div class="button">
             <a href="#" onclick="login()">Đăng Nhập</a>
         </div>
         <p>Chưa có tài khoản? <a href="#" onclick="toggleView('register-container')">Đăng Ký</a></p>
     </div>
 
+    <!-- Đăng Ký -->
     <div id="register-container" class="register-container hidden">
         <h2>Đăng Ký</h2>
-        <input type="text" id="register-username" placeholder="Tên Đăng Nhập">
-        <input type="password" id="register-password" placeholder="Mật Khẩu">
+        <input type="text" id="register-username" placeholder="Tên Đăng Nhập" required>
+        <input type="password" id="register-password" placeholder="Mật Khẩu" required>
         <div class="button">
             <a href="#" onclick="register()">Đăng Ký</a>
         </div>
@@ -183,6 +184,7 @@
     </div>
 
     <script>
+        // Hàm điều hướng giữa các trang
         function toggleView(showSection) {
             // Ẩn tất cả các phần
             document.getElementById("login-container").classList.add("hidden");
@@ -190,33 +192,35 @@
             document.getElementById("home").classList.add("hidden");
             document.getElementById("ban-xlim-cu").classList.add("hidden");
 
-            // Hiện phần trang chủ hoặc phần tương ứng
-            if (showSection) {
-                document.getElementById(showSection).classList.remove("hidden");
-            }
+            // Hiện phần trang cần
+            document.getElementById(showSection).classList.remove("hidden");
         }
 
+        // Hàm đăng nhập
         function login() {
-            // Giả sử tên đăng nhập và mật khẩu đúng
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
 
             if (username && password) {
-                toggleView('home');
+                // Giả sử đăng nhập thành công
+                alert("Đăng nhập thành công!");
+                toggleView('home'); // Hiển thị trang chủ sau khi đăng nhập thành công
             } else {
-                alert("Vui lòng nhập đầy đủ thông tin.");
+                alert("Vui lòng nhập đầy đủ thông tin!");
             }
         }
 
+        // Hàm đăng ký
         function register() {
             const username = document.getElementById("register-username").value;
             const password = document.getElementById("register-password").value;
 
             if (username && password) {
+                // Giả sử đăng ký thành công
                 alert("Đăng ký thành công!");
-                toggleView('login-container');
+                toggleView('login-container'); // Chuyển về giao diện đăng nhập sau khi đăng ký
             } else {
-                alert("Vui lòng nhập đầy đủ thông tin.");
+                alert("Vui lòng nhập đầy đủ thông tin!");
             }
         }
     </script>
