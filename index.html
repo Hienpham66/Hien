@@ -1,5 +1,6 @@
 
 
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -22,6 +23,42 @@
             color: #ff9900;
             text-transform: uppercase;
             margin: 0;
+        }
+        .menu-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background-color: #34e89e;
+            border: none;
+            padding: 10px;
+            color: #0d1b2a;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 60px; /* Adjust based on your layout */
+            left: 20px;
+            background-color: #1b263b;
+            border-radius: 5px;
+            padding: 10px;
+            z-index: 10;
+        }
+        .dropdown button {
+            background-color: #34e89e;
+            border: none;
+            padding: 10px 20px;
+            color: #0d1b2a;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: left;
+        }
+        .dropdown button:hover {
+            background-color: #28a37f;
         }
         .container {
             display: grid;
@@ -133,6 +170,11 @@
     <div id="content" style="display: none;">
         <div class="header">
             <h1>Shop Bán Xlim</h1>
+            <button class="menu-button" onclick="toggleDropdown()">☰</button> <!-• Menu button -->
+            <div class="dropdown" id="dropdownMenu">
+                <button onclick="showDeposit()">Nạp tiền</button>
+                <button onclick="showTransfer()">Chuyển khoản</button>
+            </div>
         </div>
         <div class="logout">
             <button onclick="logout()">Đăng Xuất</button>
@@ -227,6 +269,19 @@
             
             passwordField.type = type;
             passwordConfirmField.type = type;
+        }
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdownMenu');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+        }
+
+        function showDeposit() {
+            alert('Chức năng nạp tiền sẽ được triển khai.');
+        }
+
+        function showTransfer() {
+            alert('Chức năng chuyển khoản sẽ được triển khai.');
         }
 
         function showSignup() {
