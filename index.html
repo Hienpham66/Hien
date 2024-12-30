@@ -109,7 +109,6 @@
     <div class="login" id="login">
         <div class="form-container">
             <h2>Đăng Nhập</h2>
-            <h2>Lưu Ý Khi đăng ký tài khoản và mật khẩu chỉ dùng được 1 ip máy</h2>
             <input type="text" id="loginUsername" placeholder="Tên đăng nhập">
             <input type="password" id="loginPassword" placeholder="Mật khẩu">
             <button onclick="handleLogin()">Đăng Nhập</button>
@@ -121,9 +120,10 @@
     <div class="signup" id="signup" style="display: none;">
         <div class="form-container">
             <h2>Đăng Ký</h2>
-            <h2>Lưu Ý Khi đăng ký tài khoản và mật khẩu chỉ dùng được 1 ip máy</h2>
             <input type="text" id="signupUsername" placeholder="Tên đăng nhập">
             <input type="password" id="signupPassword" placeholder="Mật khẩu">
+            <input type="password" id="signupPasswordConfirm" placeholder="Nhập lại mật khẩu">
+            <button onclick="togglePasswordVisibility()">Hiện/Ẩn Mật Khẩu</button>
             <button onclick="handleSignup()">Đăng Ký</button>
             <p>Đã có tài khoản? <a href="#" onclick="showLogin()" style="color: #34e89e;">Đăng Nhập</a></p>
         </div>
@@ -201,20 +201,32 @@
         function handleSignup() {
             const username = document.getElementById('signupUsername').value;
             const password = document.getElementById('signupPassword').value;
+            const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
 
             // Kiểm tra xem tên đăng nhập đã tồn tại trong Local Storage chưa
             const savedUsername = localStorage.getItem('username');
 
             if (username === savedUsername) {
                 alert('Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác.');
-            } else if (username && password) {
+            } else if (username && password && password === passwordConfirm) {
                 localStorage.setItem('username', username);
                 localStorage.setItem('password', password);
                 alert('Đăng ký thành công!');
                 showLogin();
+            } else if (password !== passwordConfirm) {
+                alert('Mật khẩu không khớp! Vui lòng kiểm tra lại.');
             } else {
                 alert('Vui lòng nhập đầy đủ thông tin!');
             }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('signupPassword');
+            const passwordConfirmField = document.getElementById('signupPasswordConfirm');
+            const type = passwordField.type === 'password' ? 'text' : 'password';
+            
+            passwordField.type = type;
+            passwordConfirmField.type = type;
         }
 
         function showSignup() {
