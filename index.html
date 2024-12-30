@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -103,7 +104,7 @@
     </style>
 </head>
 <body>
-    <!-- Đăng nhập -->
+    <!-• Đăng nhập -->
     <div class="login" id="login">
         <div class="form-container">
             <h2>Đăng Nhập</h2>
@@ -115,7 +116,7 @@
         </div>
     </div>
 
-    <!-- Đăng ký -->
+    <!-• Đăng ký -->
     <div class="signup" id="signup" style="display: none;">
         <div class="form-container">
             <h2>Đăng Ký</h2>
@@ -127,7 +128,7 @@
         </div>
     </div>
 
-    <!-- Nội dung -->
+    <!-• Nội dung -->
     <div id="content" style="display: none;">
         <div class="header">
             <h1>Shop Bán Xlim</h1>
@@ -135,6 +136,7 @@
         <div class="logout">
             <button onclick="logout()">Đăng Xuất</button>
         </div>
+        <div id="welcomeMessage" style="color: #ff9900; text-align: center; margin: 20px;"></div>
         <div class="container">
             <div class="item">
                 <img src="IMG_3823.jpeg" alt="Xlim">
@@ -147,13 +149,13 @@
                 <h3>Sản phẩm 2</h3>
                 <p>350k</p>
                 <button>Mua ngay</button>
-                </div>
+            </div>
             <div class="item">
                 <img src="IMG_3681.heic" alt="Xlim">
                 <h3>Sản phẩm 3</h3>
                 <p>350k</p>
                 <button>Mua ngay</button>
-                </div>
+            </div>
             <div class="item">
                 <img src="IMG_3825.jpeg" alt="Xlim">
                 <h3>Sản phẩm 4</h3>
@@ -170,6 +172,7 @@
             if (isLoggedIn === 'true') {
                 document.getElementById('login').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
+                document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${localStorage.getItem('username')}, đã đến với trang web của Hiển!`;
             }
         };
 
@@ -186,6 +189,9 @@
                 localStorage.setItem('isLoggedIn', 'true');
                 document.getElementById('login').style.display = 'none';
                 document.getElementById('content').style.display = 'block';
+                
+                // Hiển thị thông báo chào mừng
+                document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
             } else {
                 alert('Sai tên đăng nhập hoặc mật khẩu!');
             }
