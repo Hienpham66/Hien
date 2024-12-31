@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Bán Xlim</title>
     <link rel="stylesheet" href="styles.css">
-    <!-• Thêm script reCAPTCHA -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
@@ -28,7 +27,7 @@
             <input type="text" id="signupUsername" placeholder="Tên đăng nhập">
             <input type="password" id="signupPassword" placeholder="Mật khẩu">
             <input type="password" id="signupPasswordConfirm" placeholder="Nhập lại mật khẩu">
-            <div class="g-recaptcha" data-sitekey="6Lf6eKoqAAAAAFVwciSwcD1Xtk0igCyU-MskI-D1"></div>
+            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
             <button onclick="togglePasswordVisibility()">Hiện/Ẩn Mật Khẩu</button>
             <button onclick="handleSignup()">Đăng Ký</button>
             <p>Đã có tài khoản? <a href="#" onclick="showLogin()" style="color: #34e89e;">Đăng Nhập</a></p>
@@ -44,6 +43,9 @@
                 <button onclick="showTransfer()">Chuyển khoản</button>
             </div>
         </div>
+        <div id="balance" style="color: #ff9900; text-align: center; margin: 20px; font-size: 24px;">
+            Số dư của bạn: <span id="balanceAmount">0</span> VNĐ
+        </div>
         <div class="logout">
             <button onclick="logout()">Đăng Xuất</button>
         </div>
@@ -53,26 +55,30 @@
                 <img src="IMG_3823.jpeg" alt="Xlim">
                 <h3>Sản phẩm 1</h3>
                 <p>350k</p>
-                <button>Mua ngay</button>
+                <button onclick="handlePurchase(350000)">Mua ngay</button>
             </div>
             <div class="item">
                 <img src="IMG_3822.jpeg" alt="Xlim">
                 <h3>Sản phẩm 2</h3>
                 <p>350k</p>
-                <button>Mua ngay</button>
+                <button onclick="handlePurchase(350000)">Mua ngay</button>
             </div>
             <div class="item">
                 <img src="IMG_3681.heic" alt="Xlim">
                 <h3>Sản phẩm 3</h3>
                 <p>350k</p>
-                <button>Mua ngay</button>
+                <button onclick="handlePurchase(350000)">Mua ngay</button>
             </div>
             <div class="item">
                 <img src="IMG_3825.jpeg" alt="Xlim">
                 <h3>Sản phẩm 4</h3>
                 <p>350k</p>
-                <button>Mua ngay</button>
+                <button onclick="handlePurchase(350000)">Mua ngay</button>
             </div>
+        </div>
+        <div class="deposit" style="text-align: center; margin: 20px;">
+            <input type="number" id="depositAmount" placeholder="Nhập số tiền nạp vào">
+            <button onclick="deposit(parseInt(document.getElementById('depositAmount').value, 10))">Nạp Tiền</button>
         </div>
     </div>
 
