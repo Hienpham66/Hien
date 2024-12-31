@@ -1,4 +1,5 @@
 
+
 window.onload = () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
@@ -30,12 +31,18 @@ function handleSignup() {
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
     const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
+    const recaptchaResponse = grecaptcha.getResponse();
 
     const savedUsername = localStorage.getItem('username');
 
     if (username === savedUsername) {
         alert('Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác.');
     } else if (username && password && password === passwordConfirm) {
+        if (recaptchaResponse.length === 0) {
+            alert('Vui lòng xác nhận rằng bạn không phải là robot.');
+            return;
+        }
+
         localStorage.setItem('username', username);
         localStorage.setItem('password', password);
         alert('Đăng ký thành công!');
