@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Bán Xlim</title>
     <link rel="stylesheet" href="styles.css">
+    <!-• Thêm script reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="login" id="login">
@@ -26,6 +28,7 @@
             <input type="text" id="signupUsername" placeholder="Tên đăng nhập">
             <input type="password" id="signupPassword" placeholder="Mật khẩu">
             <input type="password" id="signupPasswordConfirm" placeholder="Nhập lại mật khẩu">
+            <div class="g-recaptcha" data-sitekey="6Lf6eKoqAAAAAFVwciSwcD1Xtk0igCyU-MskI-D1"></div>
             <button onclick="togglePasswordVisibility()">Hiện/Ẩn Mật Khẩu</button>
             <button onclick="handleSignup()">Đăng Ký</button>
             <p>Đã có tài khoản? <a href="#" onclick="showLogin()" style="color: #34e89e;">Đăng Nhập</a></p>
