@@ -1,11 +1,15 @@
 
 
+let balance = 0; // Số dư ban đầu
+
 window.onload = () => {
     const isLoggedIn = localStorage.getItem('isLoggedIn');
     if (isLoggedIn === 'true') {
         document.getElementById('login').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${localStorage.getItem('username')}, đã đến với trang web của Hiển!`;
+        balance = parseInt(localStorage.getItem('balance'), 10) || 0; // Đọc số dư từ localStorage
+        updateBalanceDisplay();
     }
 };
 
@@ -22,6 +26,8 @@ function handleLogin() {
         document.getElementById('login').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
+        balance = parseInt(localStorage.getItem('balance'), 10) || 0; // Đọc số dư từ localStorage
+        updateBalanceDisplay();
     } else {
         alert('Sai tên đăng nhập hoặc mật khẩu!');
     }
@@ -43,14 +49,42 @@ function handleSignup() {
             return;
         }
 
+        // Lưu thông tin người dùng và khởi tạo số dư
         localStorage.setItem('username', username);
         localStorage.setItem('password', password);
+        localStorage.setItem('balance', balance); // Lưu số dư là 0
         alert('Đăng ký thành công!');
         showLogin();
     } else if (password !== passwordConfirm) {
         alert('Mật khẩu không khớp! Vui lòng kiểm tra lại.');
     } else {
         alert('Vui lòng nhập đầy đủ thông tin!');
+    }
+}
+
+function updateBalanceDisplay() {
+    document.getElementById('balanceAmount').innerText = balance;
+}
+
+function handlePurchase(productPrice) {
+    if (balance >= productPrice) {
+        balance -= productPrice;
+        localStorage.setItem('balance', balance); // Cập nhật số dư trong localStorage
+        updateBalanceDisplay();
+        alert('Mua hàng thành công!');
+    } else {
+        alert('Không đủ số dư để thực hiện giao dịch!');
+    }
+}
+
+function deposit(amount) {
+    if (amount > 0) {
+        balance += amount;
+        localStorage.setItem('balance', balance); // Cập nhật số dư trong localStorage
+        updateBalanceDisplay();
+        alert('Nạp tiền thành công!');
+    } else {
+        alert('Số tiền nạp vào phải lớn hơn 0.');
     }
 }
 
