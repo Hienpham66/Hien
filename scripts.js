@@ -1,5 +1,6 @@
 
 
+
 let balance = 0; // Số dư ban đầu
 
 window.onload = () => {
@@ -37,18 +38,12 @@ function handleSignup() {
     const username = document.getElementById('signupUsername').value;
     const password = document.getElementById('signupPassword').value;
     const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
-    const recaptchaResponse = grecaptcha.getResponse();
 
     const savedUsername = localStorage.getItem('username');
 
     if (username === savedUsername) {
         alert('Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác.');
     } else if (username && password && password === passwordConfirm) {
-        if (recaptchaResponse.length === 0) {
-            alert('Vui lòng xác nhận rằng bạn không phải là robot.');
-            return;
-        }
-
         // Lưu thông tin người dùng và khởi tạo số dư
         localStorage.setItem('username', username);
         localStorage.setItem('password', password);
@@ -77,17 +72,6 @@ function handlePurchase(productPrice) {
     }
 }
 
-function deposit(amount) {
-    if (amount > 0) {
-        balance += amount;
-        localStorage.setItem('balance', balance); // Cập nhật số dư trong localStorage
-        updateBalanceDisplay();
-        alert('Nạp tiền thành công!');
-    } else {
-        alert('Số tiền nạp vào phải lớn hơn 0.');
-    }
-}
-
 function togglePasswordVisibility() {
     const passwordField = document.getElementById('signupPassword');
     const passwordConfirmField = document.getElementById('signupPasswordConfirm');
@@ -102,8 +86,14 @@ function toggleDropdown() {
     dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
 }
 
-function showDeposit() {
-    alert('Chức năng nạp tiền sẽ được triển khai.');
+function showDepositInfo() {
+    document.getElementById('productContainer').style.display = 'none'; // Ẩn sản phẩm
+    document.getElementById('depositInfo').style.display = 'block'; // Hiện thông tin nạp tiền
+}
+
+function hideDepositInfo() {
+    document.getElementById('depositInfo').style.display = 'none'; // Ẩn thông tin nạp tiền
+    document.getElementById('productContainer').style.display = 'block'; // Hiện sản phẩm
 }
 
 function showTransfer() {
