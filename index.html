@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop Bán Xlim</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
     <div class="login" id="login">
@@ -27,7 +26,6 @@
             <input type="text" id="signupUsername" placeholder="Tên đăng nhập">
             <input type="password" id="signupPassword" placeholder="Mật khẩu">
             <input type="password" id="signupPasswordConfirm" placeholder="Nhập lại mật khẩu">
-            <div class="g-recaptcha" data-sitekey="YOUR_SITE_KEY"></div>
             <button onclick="togglePasswordVisibility()">Hiện/Ẩn Mật Khẩu</button>
             <button onclick="handleSignup()">Đăng Ký</button>
             <p>Đã có tài khoản? <a href="#" onclick="showLogin()" style="color: #34e89e;">Đăng Nhập</a></p>
@@ -39,7 +37,7 @@
             <h1>Shop Bán Xlim</h1>
             <button class="menu-button" onclick="toggleDropdown()">☰</button>
             <div class="dropdown" id="dropdownMenu">
-                <button onclick="showDeposit()">Nạp tiền</button>
+                <button onclick="showDepositInfo()">Nạp tiền</button>
                 <button onclick="showTransfer()">Chuyển khoản</button>
             </div>
         </div>
@@ -50,7 +48,7 @@
             <button onclick="logout()">Đăng Xuất</button>
         </div>
         <div id="welcomeMessage" style="color: #ff9900; text-align: center; margin: 20px;"></div>
-        <div class="container">
+        <div class="container" id="productContainer">
             <div class="item">
                 <img src="IMG_3823.jpeg" alt="Xlim">
                 <h3>Sản phẩm 1</h3>
@@ -76,10 +74,14 @@
                 <button onclick="handlePurchase(350000)">Mua ngay</button>
             </div>
         </div>
-        <div class="deposit" style="text-align: center; margin: 20px;">
-            <input type="number" id="depositAmount" placeholder="Nhập số tiền nạp vào">
-            <button onclick="deposit(parseInt(document.getElementById('depositAmount').value, 10))">Nạp Tiền</button>
-        </div>
+    </div>
+
+    <div id="depositInfo" style="display: none; text-align: center; margin: 20px;">
+        <h2>Thông Tin Nạp Tiền</h2>
+        <p>Số tài khoản: <strong>6907205383545</strong></p>
+        <p>Chủ tài khoản: <strong>Pham The Hien</strong></p>
+        <img src="path/to/your/qr-code.png" alt="QR Code" style="max-width: 200px; margin: 20px auto;">
+        <button onclick="hideDepositInfo()">Đóng</button>
     </div>
 
     <script src="scripts.js"></script>
