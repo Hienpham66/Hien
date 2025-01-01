@@ -2,6 +2,7 @@
 
 
 
+
 let balance = 0; // Số dư ban đầu
 
 window.onload = () => {
@@ -28,11 +29,11 @@ function handleLogin() {
         alert('Đăng nhập thành công!');
         localStorage.setItem('isLoggedIn', 'true');
         localStorage.setItem('currentUser', username);
+        balance = user.balance; // Đọc số dư từ tài khoản người dùng
+        updateBalanceDisplay();
         document.getElementById('login').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
-        balance = user.balance; // Đọc số dư từ tài khoản người dùng
-        updateBalanceDisplay();
     } else {
         alert('Sai tên đăng nhập hoặc mật khẩu!');
     }
