@@ -1,6 +1,7 @@
 
 
 
+
 let balance = 0; // Số dư ban đầu
 
 window.onload = () => {
@@ -8,8 +9,9 @@ window.onload = () => {
     if (isLoggedIn === 'true') {
         document.getElementById('login').style.display = 'none';
         document.getElementById('content').style.display = 'block';
-        document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${localStorage.getItem('username')}, đã đến với trang web của Hiển!`;
-        balance = parseInt(localStorage.getItem('balance'), 10) || 0; // Đọc số dư từ localStorage
+        const username = localStorage.getItem('currentUser');
+        document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
+        balance = parseInt(localStorage.getItem(`${username}_balance`), 10) || 0; // Đọc số dư từ localStorage
         updateBalanceDisplay();
     }
 };
@@ -18,16 +20,18 @@ function handleLogin() {
     const username = document.getElementById('loginUsername').value;
     const password = document.getElementById('loginPassword').value;
 
-    const savedUsername = localStorage.getItem('username');
-    const savedPassword = localStorage.getItem('password');
+    const userAccounts = JSON.parse(localStorage.getItem('userAccounts')) || [];
 
-    if (username === savedUsername && password === savedPassword) {
+    const user = userAccounts.find(account => account.username === username && account.password === password);
+
+    if (user) {
         alert('Đăng nhập thành công!');
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('currentUser', username);
         document.getElementById('login').style.display = 'none';
         document.getElementById('content').style.display = 'block';
         document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
-        balance = parseInt(localStorage.getItem('balance'), 10) || 0; // Đọc số dư từ localStorage
+        balance = user.balance; // Đọc số dư từ tài khoản người dùng
         updateBalanceDisplay();
     } else {
         alert('Sai tên đăng nhập hoặc mật khẩu!');
@@ -39,15 +43,14 @@ function handleSignup() {
     const password = document.getElementById('signupPassword').value;
     const passwordConfirm = document.getElementById('signupPasswordConfirm').value;
 
-    const savedUsername = localStorage.getItem('username');
+    const userAccounts = JSON.parse(localStorage.getItem('userAccounts')) || [];
 
-    if (username === savedUsername) {
+    if (userAccounts.some(account => account.username === username)) {
         alert('Tên đăng nhập đã được sử dụng! Vui lòng nhập tên khác.');
     } else if (username && password && password === passwordConfirm) {
-        // Lưu thông tin người dùng và khởi tạo số dư
-        localStorage.setItem('username', username);
-        localStorage.setItem('password', password);
-        localStorage.setItem('balance', balance); // Lưu số dư là 0
+        // Thêm tài khoản mới vào danh sách
+        userAccounts.push({ username, password, balance: 0 }); // Khởi tạo số dư là 0
+        localStorage.setItem('userAccounts', JSON.stringify(userAccounts)); // Lưu danh sách tài khoản
         alert('Đăng ký thành công!');
         showLogin();
     } else if (password !== passwordConfirm) {
@@ -64,7 +67,11 @@ function updateBalanceDisplay() {
 function handlePurchase(productPrice) {
     if (balance >= productPrice) {
         balance -= productPrice;
-        localStorage.setItem('balance', balance); // Cập nhật số dư trong localStorage
+        const username = localStorage.getItem('currentUser');
+        const userAccounts = JSON.parse(localStorage.getItem('userAccounts'));
+        const user = userAccounts.find(account => account.username === username);
+        user.balance = balance; // Cập nhật số dư trong tài khoản người dùng
+        localStorage.setItem('userAccounts', JSON.stringify(userAccounts)); // Lưu danh sách tài khoản
         updateBalanceDisplay();
         alert('Mua hàng thành công!');
     } else {
@@ -112,5 +119,6 @@ function showLogin() {
 
 function logout() {
     localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('currentUser');
     location.reload();
 }
