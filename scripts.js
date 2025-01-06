@@ -3,6 +3,7 @@
 
 
 
+
 let balance = 0; // Số dư ban đầu
 
 window.onload = () => {
