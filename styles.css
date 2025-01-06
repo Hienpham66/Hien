@@ -1,20 +1,34 @@
 
+
 body {
     font-family: Arial, sans-serif;
     background-color: #0d1b2a;
     color: white;
     margin: 0;
 }
+
+#backgroundVideo {
+    position: fixed; /* Đặt video ở vị trí cố định */
+    top: 0;
+    left: 0;
+    width: 100%; /* Chiếm toàn bộ chiều rộng */
+    height: 100%; /* Chiếm toàn bộ chiều cao */
+    object-fit: cover; /* Đảm bảo video lấp đầy vùng chứa mà không bị bóp méo */
+    z-index: -1; /* Đặt video ở phía dưới cùng */
+}
+
 .header {
-    background-color: #1b263b;
+    background-color: rgba(27, 38, 59, 0.8); /* Màu nền mờ */
     text-align: center;
     padding: 20px;
 }
+
 .header h1 {
     color: #ff9900;
     text-transform: uppercase;
     margin: 0;
 }
+
 .menu-button {
     position: absolute;
     top: 20px;
@@ -27,16 +41,18 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .dropdown {
     display: none;
     position: absolute;
     top: 60px;
     left: 20px;
-    background-color: #1b263b;
+    background-color: rgba(27, 38, 59, 0.8); /* Nền mờ cho menu dropdown */
     border-radius: 5px;
     padding: 10px;
     z-index: 10;
 }
+
 .dropdown button {
     background-color: #34e89e;
     border: none;
@@ -48,33 +64,40 @@ body {
     width: 100%;
     text-align: left;
 }
+
 .dropdown button:hover {
     background-color: #28a37f;
 }
+
 .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
 }
+
 .item {
-    background-color: #1b263b;
+    background-color: rgba(27, 38, 59, 0.8); /* Nền mờ cho sản phẩm */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
 }
+
 .item img {
     max-width: 100%;
     border-radius: 10px;
 }
+
 .item h3 {
     margin: 10px 0;
 }
+
 .item p {
     font-size: 20px;
     color: #ff9900;
     font-weight: bold;
 }
+
 .item button {
     background-color: #34e89e;
     border: none;
@@ -84,23 +107,27 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .item button:hover {
     background-color: #28a37f;
 }
+
 .login, .signup {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #0d1b2a;
+    background-color: rgba(13, 27, 42, 0.8); /* Nền mờ cho đăng nhập/đăng ký */
 }
+
 .form-container {
-    background-color: #1b263b;
+    background-color: #1b263b; /* Nền cho biểu mẫu */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
     width: 300px;
 }
+
 .form-container input {
     width: 100%;
     padding: 10px;
@@ -108,6 +135,7 @@ body {
     border: none;
     border-radius: 5px;
 }
+
 .form-container button {
     background-color: #34e89e;
     border: none;
@@ -117,10 +145,12 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
 .logout {
     text-align: center;
     margin: 20px;
 }
+
 .logout button {
     background-color: #ff4d4d;
     border: none;
