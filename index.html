@@ -1,7 +1,4 @@
 
-
-
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -13,6 +10,11 @@
 <body>
     <video autoplay muted loop id="backgroundVideo">
         <source src="Snaptik.app_7321271195444219138.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <video id="welcomeVideo" autoplay muted style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1000;">
+        <source src="copy_45F16DBF-4280-4456-A812-1F3DF54902CC.mov" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -41,10 +43,13 @@
     <div id="content" style="display: none;">
         <div class="header">
             <h1>Shop Bán Xlim</h1>
+            <input type="text" id="searchBar" placeholder="Tìm kiếm sản phẩm...">
+            <button onclick="searchProduct()">Tìm</button>
             <button class="menu-button" onclick="toggleDropdown()">☰</button>
             <div class="dropdown" id="dropdownMenu">
                 <button onclick="showDepositInfo()">Nạp tiền</button>
                 <button onclick="showTransfer()">Chuyển khoản</button>
+                <button onclick="toggleChatbot()">Chatbot</button>
             </div>
         </div>
         <div id="balance" style="color: #ff9900; text-align: center; margin: 20px; font-size: 24px;">
@@ -88,6 +93,24 @@
         <p>Chủ tài khoản: <strong>Pham The Hien</strong></p>
         <img src="IMG_4017.jpeg" alt="QR Code" style="max-width: 200px; margin: 20px auto;">
         <button onclick="hideDepositInfo()">Đóng</button>
+    </div>
+
+    <div id="chatbot" style="display: none; position: fixed; bottom: 20px; right: 20px; width: 400px; height: 400px; border: 1px solid #ccc; background-color: rgba(27, 38, 59, 0.9); border-radius: 10px; padding: 10px; z-index: 100;">
+        <h3 style="color: #ff9900;">Chatbot</h3>
+        <div id="chatMessages" style="max-height: 300px; overflow-y: auto; margin-bottom: 10px;"></div>
+        <input type="text" id="userMessage" placeholder="Nhập tin nhắn..." style="width: calc(100% • 20px); padding: 5px; border-radius: 5px; border: none;">
+        <button onclick="sendMessage()" style="background-color: #34e89e; border: none; padding: 5px 10px; color: #0d1b2a; border-radius: 5px; cursor: pointer;">Gửi</button>
+        <div id="suggestions" style="margin-top: 10px; color: #34e89e;">
+            <strong>Gợi ý:</strong>
+            <ul>
+                <li onclick="sendSuggestion('Bạn là ai')">Bạn là ai?</li>
+                <li onclick="sendSuggestion('Giá sản phẩm')">Giá sản phẩm</li>
+                <li onclick="sendSuggestion('Thời gian mở cửa')">Thời gian mở cửa</li>
+                <li onclick="sendSuggestion('Chính sách hoàn trả')">Chính sách hoàn trả</li>
+                <li onclick="sendSuggestion('Giảm giá')">Giảm giá</li>
+                <li onclick="redirectToFacebook()">Facebook</li> <!-• Nút để chuyển tới Facebook -->
+            </ul>
+        </div>
     </div>
 
     <script src="scripts.js"></script>
