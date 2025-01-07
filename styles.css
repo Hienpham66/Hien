@@ -22,6 +22,11 @@ body {
     padding: 20px;
 }
 
+.header img {
+    max-width: 150px; /* Kích thước tối đa của logo */
+    margin-bottom: 20px; /* Khoảng cách dưới logo */
+}
+
 .header h1 {
     color: #ff9900;
     text-transform: uppercase;
