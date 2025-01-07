@@ -1,9 +1,4 @@
 
-
-
-
-
-
 let balance = 0; // Số dư ban đầu
 
 window.onload = () => {
@@ -32,9 +27,18 @@ function handleLogin() {
         localStorage.setItem('currentUser', username);
         balance = user.balance; // Đọc số dư từ tài khoản người dùng
         updateBalanceDisplay();
+
+        // Hiển thị video toàn màn hình
+        const welcomeVideo = document.getElementById('welcomeVideo');
+        welcomeVideo.style.display = 'block';
+
+        // Ẩn màn hình đăng nhập và đợi 5 giây trước khi chuyển đến sản phẩm
         document.getElementById('login').style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-        document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
+        setTimeout(() => {
+            welcomeVideo.style.display = 'none'; // Ẩn video
+            document.getElementById('content').style.display = 'block'; // Hiện phần sản phẩm
+            document.getElementById('welcomeMessage').innerText = `Xin chào bạn ${username}, đã đến với trang web của Hiển!`;
+        }, 5000); // 5000 milliseconds = 5 seconds
     } else {
         alert('Sai tên đăng nhập hoặc mật khẩu!');
     }
@@ -123,4 +127,87 @@ function logout() {
     localStorage.setItem('isLoggedIn', 'false');
     localStorage.removeItem('currentUser');
     location.reload();
+}
+
+// Hàm tìm kiếm sản phẩm
+function searchProduct() {
+    const query = document.getElementById('searchBar').value.toLowerCase();
+    const items = document.querySelectorAll('.item');
+
+    items.forEach(item => {
+        const title = item.querySelector('h3').innerText.toLowerCase();
+        if (title.includes(query)) {
+            item.style.display = 'block'; // Hiển thị sản phẩm nếu tìm thấy
+        } else {
+            item.style.display = 'none'; // Ẩn sản phẩm nếu không tìm thấy
+        }
+    });
+}
+
+// Chatbot
+function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
+}
+
+function sendMessage() {
+    const userMessage = document.getElementById('userMessage').value;
+    if (!userMessage.trim()) return;
+
+    // Hiển thị tin nhắn người dùng
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML += `<div style="color: white;">Bạn: ${userMessage}</div>`;
+
+    // Giả lập phản hồi từ chatbot
+    const botResponse = getChatbotResponse(userMessage);
+    chatMessages.innerHTML += `<div style="color: #34e89e;">Chatbot: ${botResponse}</div>`;
+
+    // Cuộn xuống tin nhắn cuối cùng
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    document.getElementById('userMessage').value = ''; // Xóa input
+}
+
+function sendSuggestion(suggestion) {
+    document.getElementById('userMessage').value = suggestion; // Điền gợi ý vào ô nhập
+    sendMessage(); // Gửi tin nhắn
+}
+
+function redirectToFacebook() {
+    const countdownElement = document.createElement('div');
+    countdownElement.style.color = '#34e89e';
+    countdownElement.innerText = "Chuyển hướng trong 3 giây...";
+    document.getElementById('chatMessages').appendChild(countdownElement);
+
+    let countdown = 3; // Thời gian đếm ngược
+    const interval = setInterval(() => {
+        countdown--;
+        countdownElement.innerText = `Chuyển hướng trong ${countdown} giây...`;
+        if (countdown <= 0) {
+            clearInterval(interval);
+            window.location.href = "https://www.facebook.com/hienpham192008?mibextid=ZbWKwL"; // Chuyển hướng tới Facebook
+        }
+    }, 1000); // Thay đổi mỗi 1 giây
+}
+
+function getChatbotResponse(message) {
+    const username = localStorage.getItem('currentUser') || "bạn"; // Lấy tên người dùng từ localStorage
+    const responses = {
+        "xin chào": "Xin chào! Tôi có thể giúp gì cho bạn?",
+        "giá sản phẩm": "Giá sản phẩm dao động từ 350k đến 500k.",
+        "cảm ơn": "Không có gì! Nếu bạn có thêm câu hỏi, hãy hỏi tôi.",
+        "bạn là ai": `Tôi là Hiển, bạn cần tôi giúp gì hả ${username}?`,
+        "giúp tôi với": "Tôi ở đây để giúp bạn! Hãy cho tôi biết bạn cần gì.",
+        "thời gian mở cửa": "Chúng tôi mở cửa từ 8h sáng đến 10h tối.",
+        "liên hệ": "Bạn có thể liên hệ với chúng tôi qua email: contact@example.com.",
+        "có sản phẩm mới không": "Có, chúng tôi thường xuyên cập nhật sản phẩm mới. Hãy kiểm tra trang chủ để biết thêm chi tiết!",
+        "hình thức thanh toán": "Chúng tôi chấp nhận thanh toán bằng tiền mặt, thẻ ngân hàng và chuyển khoản.",
+        "chính sách hoàn trả": "Bạn có thể hoàn trả sản phẩm trong vòng 7 ngày nếu không hài lòng.",
+        "giờ làm việc": "Chúng tôi làm việc từ Thứ Hai đến Chủ Nhật, từ 8h sáng đến 10h tối.",
+        "giảm giá": "Chúng tôi thường có các chương trình giảm giá vào dịp lễ hoặc cuối tháng.",
+        "tìm kiếm sản phẩm": "Bạn có thể sử dụng thanh tìm kiếm ở trên cùng để tìm sản phẩm bạn muốn.",
+        "mua hàng": "Để mua hàng, hãy nhấn vào nút 'Mua ngay' bên dưới sản phẩm.",
+        "facebook": "Chuyển hướng tới Facebook...",
+    };
+
+    return responses[message.toLowerCase()] || "Xin lỗi, tôi không hiểu câu hỏi của bạn. Bạn có thể thử hỏi lại!";
 }
